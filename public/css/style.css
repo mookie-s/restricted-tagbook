@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+/* PC、タブレット：768px以下
+スマホ：450px以下 */
+
+/* 共通
+-------------------------- */
+html {
+    font-size: 100%;
+}
+body {
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    min-height: 100vh;
+    background-color: #545454;
+}
+a {
+    text-decoration: none;
+}
+.wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    background-color: #545454;
+}
+/* header */
+header {
+    text-align: center;
+}
+.header-nav ul {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+.header-nav li {
+    list-style: none;
+    line-height: 85%;
+}
+.account-icon {
+    width: 30px;
+}
+.app-logo {
+    width: 180px;
+}
+.copyright {
+    color: #fff;
+    font-size: 0.75rem;
+}
+hr {
+    background-color: #737373;
+    height: 1px;
+    border: none;
+}
+/* main */
+main {
+    background-color: #545454;
+    padding: 5px 10px;
+}
+.button {
+    font-size: 1.25rem;
+    background: #39b6ff;
+    color: #fff;
+    border-radius: 3px;
+    padding: 15px 20px;
+}
+.button:hover {
+    background: #f6701d;
+}
+/* footer */
+footer {
+    text-align: center;
+}
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    width: 768px;
+    background-color: #737373;
+    padding: 10px 0px 5px 0;
+}
+.footer-pen {
+    position: absolute;
+    top: -30px;
+    left: 67px;
+    max-width: 9%;
+}
+.footer-pen:hover {
+    max-width: 9.5%;
+}
+.footer-pen:active {
+    max-width: 10.5%;
+}
+.footer-nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-nav li {
+    list-style: none;
+}
+.footer-nav ul li a img {
+    max-width: 22%;
+}
+/* 各ページ
+-------------------------- */
+/* top */
+.home-about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    margin-top: 20px;
+}
+.home-about p {
+    font-size: 1.25rem;
+    margin: 0 15px;
+    max-width: 300px;
+}
+.home-img {
+    text-align: center;
+    max-width: 320px;
+}
+.home-img img {
+    max-width: 50%;
+}
+.home-button {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* モバイル表示
+-------------------------- */
+@media (max-width: 450px) {
+}
