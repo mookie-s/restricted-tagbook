@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class HelpController extends Controller
 {
     public function index(): View
     {
-        return view('/home');
+        return view('/help');
     }
 }

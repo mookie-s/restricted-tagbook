@@ -16,7 +16,11 @@ body {
     background-color: #545454;
 }
 a {
+    color: #fff;
     text-decoration: none;
+}
+li {
+    list-style: none;
 }
 .wrapper {
     max-width: 768px;
@@ -34,7 +38,6 @@ header {
     padding: 10px 20px;
 }
 .header-nav li {
-    list-style: none;
     line-height: 85%;
 }
 .account-icon {
@@ -67,6 +70,13 @@ main {
 .button:hover {
     background: #f6701d;
 }
+.file-input::file-selector-button {
+    color: #fff;
+    background-color: #737373;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 8px;
+}
 /* footer */
 footer {
     text-align: center;
@@ -95,37 +105,243 @@ footer {
     display: flex;
     justify-content: space-between;
 }
-.footer-nav li {
-    list-style: none;
-}
 .footer-nav ul li a img {
     max-width: 22%;
 }
 /* 各ページ
 -------------------------- */
-/* top */
-.home-about {
+/* hello */
+.hello-about {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 15px;
     margin-top: 20px;
 }
-.home-about p {
-    font-size: 1.25rem;
+.hello-about p {
+    font-size: 1.125rem;
     margin: 0 15px;
     max-width: 300px;
 }
-.home-img {
+.hello-img {
     text-align: center;
-    max-width: 320px;
+    max-width: 300px;
 }
-.home-img img {
+.hello-img img {
     max-width: 50%;
 }
-.home-button {
+.hello-button {
     text-align: center;
     margin-top: 50px;
+}
+/* home */
+.tags-tab ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+.tags-tab ul li {
+    width: 100%;
+    text-align: center;
+    padding: 3px 0;
+}
+.tags-tab ul li:active {
+    background-color: #737373;
+}
+.note-list {
+    display: flex;
+    justify-content: space-between;
+    background-color: #737373;
+    border-radius: 3px;
+    margin-bottom: 7px;
+}
+.note-list-image img {
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 3px;
+    margin: 5px 10px -3px 5px;
+}
+.note-list-headline {
+    display: flex;
+    padding-top: 5px;
+}
+.note-list-title {
+    font-weight: bold;
+    padding: 5px 0 0 0;
+    margin-left: 10px;
+}
+/* note */
+.note-tag {
+    margin-top: 10px;
+}
+.note-tag-select {
+    color: #545454;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+.note-image-up {
+    display: flex;
+    margin-top: 10px;
+}
+.camera-icon {
+    max-width: 4%;
+    margin-right: 10px;
+}
+.image-display {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.note-title {
+    width: 25em;
+    max-width: 90%;
+    color: #545454;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin: 5px 0 0 20px;
+}
+.note-detail textarea {
+    width: 100%;
+    color: #545454;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin-top: 5px;
+}
+.note-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.note-submit-button {
+    color: #fff;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 3px 15px;
+    margin: 0 5px;
+}
+.note-submit-button:active {
+    color: #545454;
+    background-color: #f6701d;
+}
+.note-break-button {
+    color: #fff;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 3px 15px;
+    margin: 0 5px;
+}
+.note-break-button:active {
+    color: #545454;
+    background-color: #fff;
+}
+.note-before-button {
+    color: #fff;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 6px 15px;
+    margin-right: 5px;
+}
+/* search */
+.search-tab {
+    display: flex;
+    margin: 5px;
+}
+.search-input {
+    color: #545454;
+    background-color: #fff;
+    padding: 0 5px;
+    border-radius: 3px;
+}
+.search-select {
+    color: #545454;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin-left: 7px;
+}
+.search-button {
+    color: #fff;
+    background-color: #39b6ff;
+    border-radius: 3px;
+    padding: 0 15px;
+    margin-left: 15px;
+}
+.search-button:active {
+    color: #545454;
+    background-color: #fff;
+}
+/* build */
+.build-table {
+    width: 100%;
+    margin: 10px 0 30px 0;
+    border-spacing: 5px;
+}
+.build-table th {
+    font-size: 0.85rem;
+    text-align: left;
+    padding-left: 5px;
+    font-weight: lighter;
+}
+.build-days-th {
+    width: 58%;
+}
+.build-create-th {
+    width: 100px;
+}
+.build-table td {
+    background-color: #737373;
+    padding: 5px 5px;
+    text-align: left;
+    border-radius: 3px;
+}
+.build-table td p {
+    display: inline-block;
+    text-align: right;
+    line-height: 30px;
+    background: #f6701d;
+    padding-right: 5px;
+    border-radius: 3px;
+}
+.build-table td a {
+    display: inline-block;
+    text-align: right;
+    line-height: 30px;
+    background: #39b6ff;
+    padding-right: 5px;
+    border-radius: 3px;
+}
+.build-table td input {
+    display: inline-block;
+    color: #fff;
+    text-align: right;
+}
+.build-table td input:focus {
+    color: #545454;
+    background-color: #fff;
+    text-align: left;
+    border-radius: 3px;
+}
+.build-table td img {
+    display: inline-block;
+    width: 6%;
+    vertical-align: middle;
+}
+.build-table td div {
+    color: #fff;
+    background: -moz-linear-gradient(65deg, #5170ff, #ff66c4);
+    background: -webkit-linear-gradient(65deg, #5170ff, #ff66c4);
+    background: linear-gradient(25deg right, #5170ff, #ff66c4);
+    text-align: center;
+    border-radius: 3px;
+    padding: 3px 5px;
 }
 
 /* モバイル表示

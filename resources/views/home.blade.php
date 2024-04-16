@@ -7,34 +7,51 @@
         ホーム
     </x-slot:meta_description>
 
-    <h2>ノート一覧</h2>
-    <div class="home-about">
-        <div class="home-img">
-            <img src="{{ asset('/images/five.png') }}" alt="five">
-        </div>
-        <div>
-            <p>作成できるタグは５つまで！選択肢が自由すぎると逆に手が止まってしまう人や、活動を絞って尖らせたい人に最適。</p>
-        </div>
+    <h2>ノート最新100</h2>
+    <div class="tags-tab">
+        <ul>
+            <li><a href="#">すべて</a></li>
+            <li><a href="#">真人脈</a></li>
+            <li><a href="#">オフ活</a></li>
+            <li><a href="#">小説力</a></li>
+            <li><a href="#">挿絵力</a></li>
+            <li><a href="#">IT知</a></li>
+            <li><a href="#">タグなし</a></li>
+        </ul>
     </div>
-    <div class="home-about">
-        <div>
-            <p>料理、イラスト、読書、英語、絶景、幸せ時間など、自分の “好き” をタグ名にして、活動を深めよう。</p>
+    <div class="note-list">
+        <div class="note-list-image">
+            <img src="{{ asset('/images/no-image.png') }}" alt="">
         </div>
-        <div class="home-img">
-            <img src="{{ asset('/images/tag.png') }}" alt="tag">
-        </div>
-    </div>
-    <div class="home-about">
-        <div class="home-img">
-            <img src="{{ asset('/images/top-books.png') }}" alt="books">
-        </div>
-        <div class="home-about">
-            <div>
-                <p>たくさんの"経験ノート"がたまったら、"積み上げブック"に変換して、新たなタグ名で経験をはじめることも可能。</p>
+        <div class="note-list-data">
+            <div class="note-list-headline">
+                <div>2024-04-06（日）</div>
+                <div>🔖オフ活</div>
+            </div>
+            <div class="note-list-title">
+                <p>ノートのタイトル</p>
+            </div>
+            <div class="note-list-detail">
+                <p>ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容</p>
             </div>
         </div>
     </div>
-    <div class="home-button">
-        <p><a class="button" href="/register">はじめる</a></p>
+    <!-- ノートリスト２つめ -->
+    <div class="note-list">
+        <div class="note-list-image">
+            <img src="{{ asset('/images/no-image.png') }}" alt="">
+        </div>
+        <div class="note-list-data">
+            <div class="note-list-headline">
+                <div>2024-04-06（日）</div>
+                <div>🔖オフ活</div>
+            </div>
+            <div class="note-list-title">
+                <p>ノートのタイトル</p>
+            </div>
+            <div class="note-list-detail">
+                <p>ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容</p>
+            </div>
+        </div>
     </div>
 </x-layouts.base-layout>
