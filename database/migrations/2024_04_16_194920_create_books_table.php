@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tag_id')->constrained();
+            $table->foreignId('note_id')->constrained();
+            $table->string('cover');
+            $table->datetime('created_at');
+            $table->datetime('updated_at');
+            $table->softDeletes();
         });
     }
 

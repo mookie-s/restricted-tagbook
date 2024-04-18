@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tag_id')->constrained();
+            $table->text('image');
+            $table->string('title');
+            $table->text('story');
+            $table->datetime('created_at');
+            $table->datetime('updated_at');
+            $table->softDeletes();
         });
     }
 
