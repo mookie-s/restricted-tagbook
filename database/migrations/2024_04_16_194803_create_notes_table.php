@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('tag_id')->constrained();
+            $table->foreignId('book_id')->constrained()->nullable();
             $table->text('image');
             $table->string('title');
             $table->text('story');
