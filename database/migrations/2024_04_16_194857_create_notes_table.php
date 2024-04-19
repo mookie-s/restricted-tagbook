@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('tag_id')->constrained();
             $table->foreignId('book_id')->constrained()->nullable();
             $table->text('image');
-            $table->string('title');
-            $table->text('story');
+            $table->string('title', 20);
+            $table->string('story', 800);
             $table->datetime('created_at');
             $table->datetime('updated_at');
             $table->softDeletes();

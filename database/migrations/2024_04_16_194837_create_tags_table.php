@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('tagname');
+            $table->string('tagname', 10)->unique();
             $table->datetime('created_at');
             $table->datetime('updated_at');
             $table->softDeletes();

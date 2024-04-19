@@ -14,4 +14,6 @@ class NoteController extends Controller
         echo $tags;
         return view('/note', compact('tags'));
     }
+
+    // public function create_tag()
 }
