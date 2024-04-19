@@ -14,15 +14,28 @@
     <main class="wrapper">
         <div class="note-tag">
             <select class="note-tag-select" name="tag-select">
+                @foreach ($tags as $tag)
                 <option value="tag-no">タグを選択　▼</option>
-                <option value="tag-1">🔖信頼人脈力</option>
+                <!-- <option value="tag-1">🔖信頼人脈力</option>
                 <option value="tag-2">🔖オフライン活動</option>
                 <option value="tag-3">🔖短編小説</option>
                 <option value="tag-4">🔖挿絵力</option>
                 <option value="tag-5">🔖IT系メモ</option>
-                <option value="tag-5">タグなし</option>
+                <option value="tag-5">タグなし</option> -->
+                <option value="{{ $tag->id }}">{{ $tag->tagname }}</option>
+                @endforeach
             </select>
         </div>
+        @if (empty($tag->id == 5))
+        <div>
+            @csrf
+            <form action="post">
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
+                <input class="create-tag-button" type="submit" value="タグを作成">
+                <p><small>※タグを追加する場合はノートの内容を作成する前にタグを作成してください。</small></p>
+            </form>
+        </div>
+        @endif
         @csrf
         <form name="note-post" method="post" >
             <div class="note-image-up">

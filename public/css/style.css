@@ -182,6 +182,27 @@ footer {
     padding: 0 5px;
     margin-top: 10px;
 }
+.create-tag {
+    width: 11em;
+    /* max-width: 100%; */
+    color: #545454;
+    /* font-weight: bold; */
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 5px 0;
+}
+.create-tag-button {
+    color: #fff;
+    background-color: #f6701d;
+    border-radius: 3px;
+    padding: 3px 10px;
+    /* margin: 0 5px; */
+}
+.create-tag-button:active {
+    color: #545454;
+    background-color: #fff;
+}
 .note-image-up {
     display: flex;
     margin-top: 10px;
@@ -219,6 +240,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 7px;
 }
 .note-submit-button {
     color: #fff;
@@ -246,7 +268,7 @@ footer {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 6px 15px;
+    padding: 5px 15px;
     margin-right: 5px;
 }
 /* search */
