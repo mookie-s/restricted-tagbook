@@ -11,7 +11,7 @@ class NotePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,7 +27,7 @@ class NotePostRequest extends FormRequest
             'book_id' => 'nullable|exists:books,id',
             'image' => 'nullable',
             'title' => 'required|min:1|max:20',
-            'story' => 'required|min:200|max:400',
+            'story' => 'required|min:200|max:800',
         ];
     }
 }
