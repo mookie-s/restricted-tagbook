@@ -22,7 +22,6 @@ class BookPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'tag_id' => 'required|exists:tags,id',
             'cover' => 'required|unique:books|min:1|max:10',
         ];

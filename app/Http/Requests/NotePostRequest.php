@@ -22,7 +22,6 @@ class NotePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'tag_id' => 'required|exists:tags,id',
             'book_id' => 'nullable|exists:books,id',
             'image' => 'nullable',

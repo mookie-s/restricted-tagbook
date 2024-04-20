@@ -22,7 +22,6 @@ class TagPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'tagname' => 'required|unique:tags|min:1|max:10',
         ];
     }

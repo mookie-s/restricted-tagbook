@@ -28,14 +28,15 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [HelloController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index'])
-    ->middleware('auth');
-Route::get('/note', [NoteController::class, 'index'])
-    ->middleware('auth');
-Route::get('/search', [SearchController::class, 'index'])
-    ->middleware('auth');
-Route::get('/stack', [StackController::class, 'index'])
-    ->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+
+Route::get('/note', [NoteController::class, 'index'])->middleware('auth');
+
+Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
+
+Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
+Route::post('tag', [StackController::class, 'store_tag']);
+
 Route::get('/help', [HelpController::class, 'index']);
 Route::get('/terms', [TermsController::class, 'index']);
 Route::get('/privacy', [PrivacyController::class, 'index']);

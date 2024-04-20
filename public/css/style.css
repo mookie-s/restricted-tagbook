@@ -182,27 +182,6 @@ footer {
     padding: 0 5px;
     margin-top: 10px;
 }
-.create-tag {
-    width: 11em;
-    /* max-width: 100%; */
-    color: #545454;
-    /* font-weight: bold; */
-    background-color: #fff;
-    border-radius: 3px;
-    padding: 3px 5px;
-    margin: 5px 0;
-}
-.create-tag-button {
-    color: #fff;
-    background-color: #f6701d;
-    border-radius: 3px;
-    padding: 3px 10px;
-    /* margin: 0 5px; */
-}
-.create-tag-button:active {
-    color: #545454;
-    background-color: #fff;
-}
 .note-image-up {
     display: flex;
     margin-top: 10px;
@@ -300,31 +279,55 @@ footer {
     color: #545454;
     background-color: #fff;
 }
-/* build */
-.build-table {
+/* stack */
+.create-tag-form {
+    margin: 10px 0 0 5px;
+}
+.create-tag {
+    width: 11em;
+    /* max-width: 100%; */
+    color: #545454;
+    /* font-weight: bold; */
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 5px 0;
+}
+.create-tag-button {
+    color: #fff;
+    background-color: #f6701d;
+    border-radius: 3px;
+    padding: 3px 15px;
+    /* margin-left: 5px; */
+}
+.create-tag-button:active {
+    color: #545454;
+    background-color: #fff;
+}
+.stack-table {
     width: 100%;
     margin: 10px 0 30px 0;
     border-spacing: 5px;
 }
-.build-table th {
+.stack-table th {
     font-size: 0.85rem;
     text-align: left;
     padding-left: 5px;
     font-weight: lighter;
 }
-.build-days-th {
+.stack-days-th {
     width: 58%;
 }
-.build-create-th {
+.stack-create-th {
     width: 100px;
 }
-.build-table td {
+.stack-table td {
     background-color: #737373;
     padding: 5px 5px;
     text-align: left;
     border-radius: 3px;
 }
-.build-table td p {
+.stack-table td p {
     display: inline-block;
     text-align: right;
     line-height: 30px;
@@ -332,7 +335,7 @@ footer {
     padding-right: 5px;
     border-radius: 3px;
 }
-.build-table td a {
+.stack-table td a {
     display: inline-block;
     text-align: right;
     line-height: 30px;
@@ -340,23 +343,23 @@ footer {
     padding-right: 5px;
     border-radius: 3px;
 }
-.build-table td input {
+.stack-table td input {
     display: inline-block;
     color: #fff;
     text-align: right;
 }
-.build-table td input:focus {
+.stack-table td input:focus {
     color: #545454;
     background-color: #fff;
     text-align: left;
     border-radius: 3px;
 }
-.build-table td img {
+.stack-table td img {
     display: inline-block;
     width: 6%;
     vertical-align: middle;
 }
-.build-table td div {
+.stack-table td div {
     color: #fff;
     background: -moz-linear-gradient(65deg, #5170ff, #ff66c4);
     background: -webkit-linear-gradient(65deg, #5170ff, #ff66c4);
