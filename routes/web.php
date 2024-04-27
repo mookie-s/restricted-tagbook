@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\BrokenNoteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StackController;
 use App\Http\Controllers\HelpController;
@@ -31,6 +32,10 @@ Route::get('/', [HelloController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 Route::get('/note', [NoteController::class, 'index'])->middleware('auth');
+Route::post('/note', [NoteController::class, 'store']);
+
+Route::get('/broken-note', [BrokenNoteController::class, 'index'])->middleware('auth');
+Route::post('/broken-note', [BrokenNoteController::class, 'update']);
 
 Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
 

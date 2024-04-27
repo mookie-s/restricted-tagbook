@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('tag_id')->constrained()->nullable();
-            $table->foreignId('book_id')->constrained()->nullable();
-            $table->text('image');
+            $table->foreignId('book_id')->nullable()->constrained();
+            $table->string('image')->nullable();
             $table->string('title', 20);
             $table->string('story', 800);
+            $table->boolean('break')->default(0)->comment('中断保存フラグ');
             $table->datetime('created_at');
             $table->datetime('updated_at');
             $table->softDeletes();

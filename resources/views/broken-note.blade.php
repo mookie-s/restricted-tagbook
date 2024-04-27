@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ノート作成</title>
+    <title>中断ノート再開</title>
     <meta name="description" content="ノートを作る">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,39 +15,34 @@
 </head>
 <body>
     <main class="wrapper">
-        <h2>ノートの作成</h2>
-        @if(!empty($break_note))
-            <a class="broken-note-button" href="/broken-note">中断ノートを再開</a>
-        @endif
-        <form action="/note" method="post" enctype="multipart/form-data">
+        <h2>中断ノートの再開</h2>
+        <form action="/broken-note" method="post" enctype="multipart/form-data">
             <div class="preview-back">
                 <div class="file">
                     <label class="file__label02">
                         @csrf
-                        <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" value="{{ old('image') }}">
+                        <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" value="{{ old('image', $broken_note->image) }}">
                     </label>
                     <small class="file__none">イメージが選択されていません</small>
                 </div>
             </div>
             <div>
                 <select class="note-tag-select" name="tag_id">
-                    <option>タグを選択　▼</option>
+                    <!-- <option>タグを選択　▼</option> -->
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}"
-                        @if(old('tag_id') == $tag->id)
+                        @if($broken_note->tag_id == $tag->id)
                             selected
                         @endif
                         >🔖{{ $tag->tagname }}</option>
                     @endforeach
                 </select>
                 @csrf
-                <input class="note-title" type="text" name="title" value="{{ old('title') }}" placeholder="タイトル（20文字以内）" />
-                @if(!empty($break_note))
-                    <a class="broken-note-button" href="/broken-note">中断ノートを再開</a>
-                @endif
+                <input class="note-title" type="text" name="title" value="{{ old('title', $broken_note->title) }}" placeholder="タイトル（20文字以内）" />
             </div>
             <div class="note-story">
-                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）">{{ old('story') }}</textarea>
+                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）">{{ old('story', $broken_note->story) }}</textarea>
+                <input type="hidden" name="break" value="{{ $broken_note->break }}">
             </div>
             <div class="note-buttons">
                 <div>

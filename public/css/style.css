@@ -70,13 +70,6 @@ main {
 .button:hover {
     background: #f6701d;
 }
-.file-input::file-selector-button {
-    color: #fff;
-    background-color: #737373;
-    border: none;
-    border-radius: 3px;
-    padding: 2px 8px;
-}
 /* footer */
 footer {
     text-align: center;
@@ -172,42 +165,56 @@ footer {
     margin-left: 10px;
 }
 /* note */
-.note-tag {
+.preview-back {
     margin-top: 10px;
+}
+.file__label02 {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    /* width: min(100%, 680px); */
+    padding-top: 390px;
+    margin-inline: auto;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    background-image: url('../images/note-no-image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.file input[type=file] {
+    display: none;
+}
+.note-tag-icon {
+    width: 1rem;
+    height: 1rem;
 }
 .note-tag-select {
-    color: #545454;
-    background-color: #fff;
-    border-radius: 3px;
-    padding: 0 5px;
-    margin-top: 10px;
-}
-.note-image-up {
-    display: flex;
-    margin-top: 10px;
-}
-.camera-icon {
-    max-width: 4%;
-    margin-right: 10px;
-}
-.image-display {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    border-radius: 3px;
-    margin-top: 10px;
-}
-.note-title {
-    width: 25em;
-    max-width: 90%;
     color: #545454;
     font-weight: bold;
     background-color: #fff;
     border-radius: 3px;
-    padding: 5px 5px;
-    margin: 5px 0 0 20px;
+    padding: 5px 10px 5px 5px;
+    margin: 5px 5px 0 5px;
 }
-.note-detail textarea {
+.note-title {
+    width: 21em;
+    max-width: 90%;
+    color: #545454;
+    /* font-weight: bold; */
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin-top: 5px;
+}
+.broken-note-button {
+    color: #fff;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 7px 15px;
+    margin-left: 5px;
+}
+.note-story textarea {
     width: 100%;
     color: #545454;
     background-color: #fff;
@@ -219,35 +226,34 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 7px;
 }
 .note-submit-button {
     color: #fff;
-    background-color: #737373;
+    background-color: #f6701d;
     border-radius: 3px;
-    padding: 3px 15px;
-    margin: 0 5px;
+    padding: 5px 15px;
+    margin: 5px 5px 0 5px;
 }
 .note-submit-button:active {
     color: #545454;
-    background-color: #f6701d;
+    background-color: #fff;
 }
 .note-break-button {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 3px 15px;
-    margin: 0 5px;
+    padding: 5px 15px;
+    margin: 5px 10px 0 5px;
 }
 .note-break-button:active {
     color: #545454;
     background-color: #fff;
 }
-.note-before-button {
+.to-home-button {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 5px 15px;
+    padding: 8px 15px;
     margin-right: 5px;
 }
 /* search */
@@ -372,4 +378,9 @@ footer {
 /* モバイル表示
 -------------------------- */
 @media (max-width: 450px) {
+    .file__label02 {
+        width: 100%;
+        aspect-ratio: 16/9;
+        padding-top: 56.25%;
+    }
 }

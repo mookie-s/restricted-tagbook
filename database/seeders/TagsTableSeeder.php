@@ -14,8 +14,8 @@ class TagsTableSeeder extends Seeder
     public function run(): void
     {
         $tags = [
-            ['id' => 1, 'user_id' => 1, 'tagname' => '読書'],
-            ['id' => 2, 'user_id' => 1, 'tagname' => 'ジョギング']
+            ['id' => 1, 'user_id' => 1, 'tagname' => '日記'],
+            ['id' => 2, 'user_id' => 1, 'tagname' => '読書']
         ];
 
         foreach ($tags as $tag) {
