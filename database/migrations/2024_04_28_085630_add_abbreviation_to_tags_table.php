@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('tagname', 10);
-            $table->datetime('created_at');
-            $table->datetime('updated_at');
-            $table->softDeletes();
+        Schema::table('tags', function (Blueprint $table) {
+            $table->string('abbreviation', 4)->comment('略称')->after('tagname');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::table('tags', function (Blueprint $table) {
+            $table->dropColumn('abbreviation');
+        });
     }
 };

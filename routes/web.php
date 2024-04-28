@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [HelloController::class, 'index']);
+
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/home/{tag}', [HomeController::class, 'show'])->middleware('auth');
 
 Route::get('/note', [NoteController::class, 'index'])->middleware('auth');
 Route::post('/note', [NoteController::class, 'store']);

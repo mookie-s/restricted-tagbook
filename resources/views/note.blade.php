@@ -16,9 +16,6 @@
 <body>
     <main class="wrapper">
         <h2>ノートの作成</h2>
-        @if(!empty($break_note))
-            <a class="broken-note-button" href="/broken-note">中断ノートを再開</a>
-        @endif
         <form action="/note" method="post" enctype="multipart/form-data">
             <div class="preview-back">
                 <div class="file">
@@ -32,7 +29,7 @@
             <div>
                 <select class="note-tag-select" name="tag_id">
                     <option>タグを選択　▼</option>
-                    @foreach ($tags as $tag)
+                    @foreach($tags as $tag)
                         <option value="{{ $tag->id }}"
                         @if(old('tag_id') == $tag->id)
                             selected

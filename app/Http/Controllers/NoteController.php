@@ -14,8 +14,9 @@ class NoteController extends Controller
 {
     public function index(): View
     {
-        $tags = Tag::all();
-        $break_note = Note::where('break', 1)->first();
+        $user_id = Auth::id();
+        $tags = Tag::where('user_id', $user_id)->get();
+        $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
         return view('/note', compact('tags', 'break_note'));
     }
 
@@ -25,7 +26,7 @@ class NoteController extends Controller
         $note->user_id = Auth::id();
         $note->tag_id = $request->tag_id;
         if ($request->file('image')) {
-            $image_path = $request->file('image')->store('images');
+            $image_path = $request->file('image')->store('public/images');
             $note->image = $image_path;
         }
         $note->title = $request->title;

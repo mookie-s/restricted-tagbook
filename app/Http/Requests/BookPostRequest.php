@@ -23,7 +23,7 @@ class BookPostRequest extends FormRequest
     {
         return [
             'tag_id' => 'required|exists:tags,id',
-            'cover' => 'required|unique:books|min:1|max:10',
+            'cover' => 'required|min:1|max:10',
         ];
     }
 }

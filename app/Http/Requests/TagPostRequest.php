@@ -22,7 +22,8 @@ class TagPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tagname' => 'required|unique:tags|min:1|max:10',
+            'tagname' => 'required|min:1|max:10',
+            'abbreviation' => 'required|min:1|max:4',
         ];
     }
 }

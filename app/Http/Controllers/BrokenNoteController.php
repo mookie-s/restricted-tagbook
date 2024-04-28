@@ -14,18 +14,20 @@ class BrokenNoteController extends Controller
 {
     public function index(): View
     {
-        $tags = Tag::all();
-        $broken_note = Note::where('break', 1)->first();
+        $user_id = Auth::id();
+        $tags = Tag::where('user_id', $user_id)->get();
+        $broken_note = Note::where('user_id', $user_id)->where('break', 1)->first();
 
         return view('/broken-note', compact('tags', 'broken_note'));
     }
 
     public function update(NotePostRequest $request): RedirectResponse
     {
-        $broken_note = Note::where('break', 1)->first();
+        $user_id = Auth::id();
+        $broken_note = Note::where('user_id', $user_id)->where('break', 1)->first();
 
         if ($request->file('image')) {
-            $image_path = $request->file('image')->store('images');
+            $image_path = $request->file('image')->store('public/images');
             $broken_note->image = $image_path;
         }
         $broken_note->title = $request->title;
@@ -37,6 +39,6 @@ class BrokenNoteController extends Controller
         }
         $broken_note->save();
 
-        return redirect('/note');
+        return redirect('/home');
     }
 }

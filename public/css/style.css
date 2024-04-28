@@ -131,6 +131,7 @@ footer {
 .tags-tab ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 10px;
 }
 .tags-tab ul li {
@@ -144,7 +145,8 @@ footer {
 .note-list {
     display: flex;
     justify-content: space-between;
-    background-color: #737373;
+    color: #545454;
+    background-color: #f3fbff;
     border-radius: 3px;
     margin-bottom: 7px;
 }
@@ -162,7 +164,6 @@ footer {
 .note-list-title {
     font-weight: bold;
     padding: 5px 0 0 0;
-    margin-left: 10px;
 }
 /* note */
 .preview-back {
@@ -291,9 +292,17 @@ footer {
 }
 .create-tag {
     width: 11em;
-    /* max-width: 100%; */
     color: #545454;
     /* font-weight: bold; */
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 5px 0;
+}
+.create-tag-abbreviation {
+    width: 7em;
+    /* max-width: 100%; */
+    color: #545454;
     background-color: #fff;
     border-radius: 3px;
     padding: 3px 5px;
