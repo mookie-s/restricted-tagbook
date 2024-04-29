@@ -8,11 +8,10 @@
     </x-slot:meta_description>
 
     <h2>積み上げ</h2>
-    <!-- {{$tags}} -->
-    @if ($tags->count() < 5)
-        <div class="create-tag-form">
+    @if($tags->count() < 5)
+        <div class="tag-form">
             <p>タグを登録する</p>
-            <form action="/tag" method="post">
+            <form action="/store_tag" method="post">
                 @csrf
                 <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
@@ -21,7 +20,7 @@
             </form>
         </div>
     @endif
-    @if ($tags->count() != 0)
+    @if($tags->count() != 0)
         @csrf
         <form>
             <table class="stack-table">
@@ -46,6 +45,7 @@
             </table>
         </form>
     @endif
+
     @csrf
     <form>
         <table class="stack-table">
@@ -71,4 +71,17 @@
             </tr>
         </table>
     </form>
+
+    <div class="stack-tag-delete">
+        <p>タグを削除する</p>
+        <form class="delete-tag-select" action="/delete_confirm" method="post">
+            <select  name="delete_tag_id">
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
+                @endforeach
+            </select>
+            @csrf
+            <input type="submit" value="！削除" />
+        </form>
+    </div>
 </x-layouts.base-layout>

@@ -287,7 +287,7 @@ footer {
     background-color: #fff;
 }
 /* stack */
-.create-tag-form {
+.tag-form {
     margin: 10px 0 0 5px;
 }
 .create-tag {
@@ -321,8 +321,8 @@ footer {
 }
 .stack-table {
     width: 100%;
-    margin: 10px 0 30px 0;
     border-spacing: 5px;
+    margin: 10px 0 30px 0;
 }
 .stack-table th {
     font-size: 0.85rem;
@@ -382,6 +382,88 @@ footer {
     text-align: center;
     border-radius: 3px;
     padding: 3px 5px;
+}
+.stack-tag-delete {
+    margin-top: 50px;
+}
+.stack-tag-delete p {
+    color: #f6701d;
+}
+.delete-tag-select select {
+    color: #f6701d;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 5px 10px 5px 5px;
+    margin: 5px 0 0 5px;
+}
+.delete-tag-select input {
+    color: #f6701d;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin: 5px 5px 0 5px;
+}
+.delete-confirm{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin-top: 150px;
+}
+.delete-message {
+    color: #f6701d;
+    line-height: 1.25;
+    margin: 5px 0;
+}
+.delete-tagname {
+    margin: 20px 0 10px 0;
+}
+.delete-note-list {
+    margin: 10px 0 10px 0;
+}
+.delete-note-list table {
+    border-spacing: 5px;
+}
+.move-note {
+    margin-top: 10px;
+}
+.move-note select {
+    color: #545454;
+    background: #fff;
+    border-radius: 3px;
+    padding: 3px 10px 3px 5px;
+}
+.move-note button {
+    color: #fff;
+    background: #39b6ff;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin-left: 5px;
+}
+.move-note button:active {
+    color: #f6701d;
+    background: #737373;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin-left: 5px;
+}
+.confirm-buttons {
+    display: flex;
+    justify-content: left;
+    margin-top: 30px;
+}
+.delete-submit-button {
+    color: #f6701d;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 5px;
+}
+.cancel-button {
+    color: #545454;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-left: 10px;
 }
 
 /* モバイル表示

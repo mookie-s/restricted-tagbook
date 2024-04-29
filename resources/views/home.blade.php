@@ -12,7 +12,7 @@
         <ul>
             |<li><a href="/home">すべて</a></li>|
             @foreach($tags as $tag)
-            <li><a href="/home/{{ $tag->id }}">{{ $tag->abbreviation }}</a></li>|
+            <li><a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a></li>|
             @endforeach
             <!-- <li><a href="/home/none">タグなし</a></li> -->
         </ul>
@@ -28,7 +28,7 @@
         </div>
         <div class="note-list-data">
             <div class="note-list-headline">
-                <div>{{ $note->created_at->isoFormat('YYYY/M/D(ddd)') }}</div>
+                <div>{{ $note->created_at->isoFormat('YYYY/MM/DD (ddd)') }}</div>
                 <div>🔖{{ $note->tag->tagname }}</div>
             </div>
             <div class="note-list-title">
