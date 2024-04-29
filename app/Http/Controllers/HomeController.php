@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->get();
-        $notes = Note::withTrashed()->where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc')->take(100)->get();
+        $notes = Note::where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc')->take(100)->get();
 
         return view('/home', compact('tags', 'notes'));
     }

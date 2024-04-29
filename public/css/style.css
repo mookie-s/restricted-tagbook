@@ -287,6 +287,12 @@ footer {
     background-color: #fff;
 }
 /* stack */
+.first-note-button {
+    color: #fff;
+    background-color: #39b6ff;
+    border-radius: 3px;
+    padding: 3px 15px;
+}
 .tag-form {
     margin: 10px 0 0 5px;
 }

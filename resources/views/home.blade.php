@@ -17,6 +17,15 @@
             <!-- <li><a href="/home/none">タグなし</a></li> -->
         </ul>
     </div>
+    @if($tags->count() == 0)
+        <div>
+            <a class="create-tag-button" href="/stack">最初のタグを登録する</a>
+        </div>
+    @elseif($tags->count() != 0 && $notes->count() == 0)
+        <div>
+            <a class="first-note-button" href="/note">最初のノートを書く</a>
+        </div>
+    @endif
     @foreach($notes as $note)
     <div class="note-list">
         <div class="note-list-image">

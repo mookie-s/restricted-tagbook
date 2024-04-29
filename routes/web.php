@@ -45,10 +45,9 @@ Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
 Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
 Route::post('store_tag', [StackController::class, 'store_tag']);
 Route::post('/delete_confirm', [StackController::class, 'delete_confirm'])->middleware('auth');
-Route::post('move_note', [StackController::class, 'move_note']);
+Route::get('/export-csv', [CsvExportController::class, 'export'])->middleware('auth');
+Route::post('destroy', [StackController::class, 'destroy']);
 
 Route::get('/help', [HelpController::class, 'index']);
 Route::get('/terms', [TermsController::class, 'index']);
 Route::get('/privacy', [PrivacyController::class, 'index']);
-
-Route::get('/export-csv', [CsvExportController::class, 'export'])->middleware('auth');

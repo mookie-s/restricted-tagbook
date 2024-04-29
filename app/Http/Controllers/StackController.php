@@ -17,14 +17,15 @@ class StackController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->take(5)->get();
+        $notes = Note::where('user_id', $user_id)->where('break', 0)->get();
 
-        return view('/stack', compact('tags'));
+        return view('/stack', compact('tags', 'notes'));
     }
 
     public function store_tag(TagPostRequest $request): RedirectResponse
     {
         $tag = new Tag();
-        $tag->tagname = $request->tagame;
+        $tag->tagname = $request->tagname;
         $tag->abbreviation = $request->abbreviation;
         $tag->user_id = Auth::id();
         $tag->save();
@@ -45,24 +46,16 @@ class StackController extends Controller
         return view('/delete-confirm', compact('delete_tag', 'other_tags', 'notes'));
     }
 
-    public function move_note(Request $request)
+    public function destroy(Request $request)
     {
         $user_id = Auth::id();
-        $note_ids = $request->all();
-        // $notes = Note::where('user_id', $user_id)->get();
-        // foreach ($note_ids as $note_id) {
+        $destroy_tag_id = $request->destroy_tag;
+        $destroy_tag = Tag::where('user_id', $user_id)->find($destroy_tag_id);
 
-        // }
         \Log::debug('■■■■■■■■■■■■■■■■■■■■■■■■');
-        // \Log::debug($tag);
-        \Log::debug($note_ids);
+        \Log::debug($destroy_tag);
 
-        // return redirect('/delete_confirm');
-    }
-
-    public function destroy(Request $request): RedirectResponse
-    {
-        //
+        $destroy_tag->delete();
 
         return redirect('/stack');
     }

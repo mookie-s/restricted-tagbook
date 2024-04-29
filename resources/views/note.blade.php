@@ -16,6 +16,11 @@
 <body>
     <main class="wrapper">
         <h2>ノートの作成</h2>
+        @if($tags->count() == 0)
+        <div>
+            <a class="create-tag-button" href="/stack">最初のタグを登録する</a>
+        </div>
+        @else
         <form action="/note" method="post" enctype="multipart/form-data">
             <div class="preview-back">
                 <div class="file">
@@ -58,6 +63,7 @@
                 </div>
             </div>
         </form>
+        @endif
     </main>
 
     <script>

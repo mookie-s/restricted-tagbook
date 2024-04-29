@@ -15,7 +15,7 @@ class NoteController extends Controller
     public function index(): View
     {
         $user_id = Auth::id();
-        $tags = Tag::where('user_id', $user_id)->get();
+        $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->get();
         $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
         return view('/note', compact('tags', 'break_note'));
     }

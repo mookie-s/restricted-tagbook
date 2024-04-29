@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('tag_id')->constrained();
+            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
             $table->foreignId('book_id')->nullable()->constrained();
             $table->string('image')->nullable();
             $table->string('title', 20);

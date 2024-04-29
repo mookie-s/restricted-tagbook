@@ -22,20 +22,21 @@
                     <small class="delete-message">以下のタグと関連ノートが削除されます。</small>
                     <p>タグ名： 🔖{{ $delete_tag->tagname }}</p>
                     <p>略称： {{ $delete_tag->abbreviation }}</p>
-                    <p>ノート数： {{ $notes->count() }}（下記）</p>
+                    <p>ノート数： {{ $notes->count() }}</p>
                 </div>
+                @if($notes->count() != 0)
                 <div class="delete-note-list">
                     <form action="/export-csv" method="get">
                         @csrf
                         <input type="hidden" name="delete_tag_id" value="{{ $delete_tag->id }}">
-                    @foreach($notes as $note)
+                        @foreach($notes as $note)
                         <ul>
                             <li>> {{ $note->created_at->isoFormat('Y/MM/DD (ddd)') }}「 {{ $note->title }} 」</li>
                         </ul>
+                        @endforeach
                         <hr>
-                    @endforeach
                         <div>
-                        <p class="move-note">上記ノートのデータを<input type="submit" value="ダウンロード"></p>
+                            <p class="move-note">上記ノートのデータを<input type="submit" value="ダウンロード"></p>
                         </div>
                     </form>
                     <div class="delete-message">
@@ -44,15 +45,18 @@
                         <p><small>※ダウンロードする場合は、次の「タグを削除」実行前に必ず行ってください。</small></p>
                     </div>
                 </div>
-                <hr>
+                @endif
+                <!-- <hr> -->
                 <form action="/destroy" method="post">
                     @csrf
-                    <input type="hidden" name="delete_tag" value="{{ $delete_tag->id }}">
+                    <input type="hidden" name="destroy_tag" value="{{ $delete_tag->id }}">
                     <div class="confirm-buttons">
                         <input class="delete-submit-button" type="submit" value="！タグを削除">
                         <a class="cancel-button" href="/stack">キャンセル</a>
                     </div>
-                    <p><small class="delete-message">※タグ削除後も、ノート検索ページでは検索可能です。</small></p>
+                    <p>
+                        <small class="delete-message">※タグ削除後も、検索ページでのノート検索は可能です。</small>
+                    </p>
                 </form>
             </div>
         </div>

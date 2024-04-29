@@ -8,7 +8,21 @@
     </x-slot:meta_description>
 
     <h2>積み上げ</h2>
-    @if($tags->count() < 5)
+    @if($tags->count() != 0 && $notes->count() == 0)
+        <div>
+            <a class="first-note-button" href="/note">最初のノートを書く</a>
+        </div>
+        <div class="tag-form">
+            <p>タグを登録する</p>
+            <form action="/store_tag" method="post">
+                @csrf
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
+                <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
+                <input class="create-tag-button" type="submit" value="登録">
+                <small>※タグ登録は５つまで</small>
+            </form>
+        </div>
+    @elseif($tags->count() < 5)
         <div class="tag-form">
             <p>タグを登録する</p>
             <form action="/store_tag" method="post">
@@ -72,6 +86,7 @@
         </table>
     </form>
 
+    @if($tags->count() != 0)
     <div class="stack-tag-delete">
         <p>タグを削除する</p>
         <form class="delete-tag-select" action="/delete_confirm" method="post">
@@ -84,4 +99,5 @@
             <input type="submit" value="！削除" />
         </form>
     </div>
+    @endif
 </x-layouts.base-layout>
