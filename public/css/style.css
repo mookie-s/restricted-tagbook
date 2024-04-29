@@ -420,8 +420,8 @@ footer {
 .delete-note-list {
     margin: 10px 0 10px 0;
 }
-.delete-note-list table {
-    border-spacing: 5px;
+.delete-note-list ul {
+    margin-bottom: 5px;
 }
 .move-note {
     margin-top: 10px;
@@ -432,7 +432,7 @@ footer {
     border-radius: 3px;
     padding: 3px 10px 3px 5px;
 }
-.move-note button {
+.move-note input {
     color: #fff;
     background: #39b6ff;
     border-radius: 3px;

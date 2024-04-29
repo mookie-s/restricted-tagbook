@@ -11,6 +11,7 @@ use App\Http\Controllers\StackController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\CsvExportController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -49,3 +50,5 @@ Route::post('move_note', [StackController::class, 'move_note']);
 Route::get('/help', [HelpController::class, 'index']);
 Route::get('/terms', [TermsController::class, 'index']);
 Route::get('/privacy', [PrivacyController::class, 'index']);
+
+Route::get('/export-csv', [CsvExportController::class, 'export'])->middleware('auth');

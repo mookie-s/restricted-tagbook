@@ -24,29 +24,24 @@
                     <p>略称： {{ $delete_tag->abbreviation }}</p>
                     <p>ノート数： {{ $notes->count() }}（下記）</p>
                 </div>
-                <hr>
                 <div class="delete-note-list">
-                    <form action="/move_note" method="post">
+                    <form action="/export-csv" method="get">
+                        @csrf
+                        <input type="hidden" name="delete_tag_id" value="{{ $delete_tag->id }}">
                     @foreach($notes as $note)
-                        <div>
-                            @csrf
-                            <input type="checkbox" name="move-note[]" id="{{ $note->id }}" value="{{ $note->id }}" />
-                            <label for="{{ $note->id }}">{{ $note->created_at->isoFormat('Y/MM/DD (ddd)') }}「 {{ $note->title }} 」</label>
-                        </div>
+                        <ul>
+                            <li>> {{ $note->created_at->isoFormat('Y/MM/DD (ddd)') }}「 {{ $note->title }} 」</li>
+                        </ul>
+                        <hr>
                     @endforeach
                         <div>
-                        <p class="move-note">チェックしたノートを
-                            <select>
-                            @foreach($other_tags as $other_tag)
-                                <option name="move-tag" value="{{ $other_tag->id }}">🔖{{ $other_tag->tagname }}</option>
-                            @endforeach
-                            </select>
-                            タグに<button type="submit">移動</button>
-                        </p>
+                        <p class="move-note">上記ノートのデータを<input type="submit" value="ダウンロード"></p>
                         </div>
                     </form>
                     <div class="delete-message">
-                        <small>※上記ノートの紐づけタグを変更する場合は、該当ノートにチェックを入れ、<br>「タグを削除」実行前に必ずノートの「移動」を行ってください。</small>
+                        <p><small>※画像データはダウンロードできません。</small></p>
+                        <p><small>※ダウンロードしたファイルは、メモ帳などの簡易テキストアプリで開くことをおすすめします。</small></p>
+                        <p><small>※ダウンロードする場合は、次の「タグを削除」実行前に必ず行ってください。</small></p>
                     </div>
                 </div>
                 <hr>
@@ -57,6 +52,7 @@
                         <input class="delete-submit-button" type="submit" value="！タグを削除">
                         <a class="cancel-button" href="/stack">キャンセル</a>
                     </div>
+                    <p><small class="delete-message">※タグ削除後も、ノート検索ページでは検索可能です。</small></p>
                 </form>
             </div>
         </div>
