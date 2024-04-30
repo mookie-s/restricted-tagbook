@@ -43,8 +43,10 @@ Route::post('/broken-note', [BrokenNoteController::class, 'update']);
 Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
 
 Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
-Route::post('store_tag', [StackController::class, 'store_tag']);
-Route::post('/delete_confirm', [StackController::class, 'delete_confirm'])->middleware('auth');
+Route::post('store-tag', [StackController::class, 'store_tag']);
+Route::post('/promoted-to-book', [StackController::class, 'promoted_to_book'])->middleware('auth');
+Route::post('store-book', [StackController::class, 'store_book']);
+Route::post('/delete-confirm', [StackController::class, 'delete_confirm'])->middleware('auth');
 Route::get('/export-csv', [CsvExportController::class, 'export'])->middleware('auth');
 Route::post('destroy', [StackController::class, 'destroy']);
 

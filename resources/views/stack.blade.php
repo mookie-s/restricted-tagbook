@@ -14,7 +14,7 @@
         </div>
         <div class="tag-form">
             <p>タグを登録する</p>
-            <form action="/store_tag" method="post">
+            <form action="/store-tag" method="post">
                 @csrf
                 <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
@@ -35,8 +35,8 @@
         </div>
     @endif
     @if($tags->count() != 0)
-        @csrf
-        <form>
+        <!-- @csrf -->
+        <!-- <form action="/store_book" method="post"> -->
             <table class="stack-table">
                 <tr>
                     <th>タグ名</th>
@@ -45,19 +45,37 @@
                 </tr>
                 @foreach ($tags as $tag)
                 <tr>
-                    <td><input type="text" tabindex="-1" value="🔖{{ $tag->tagname }}"></td>
-                    @if($tag->notes->count() == 100)
-                        <td><a style="width: {{ $tag->notes->count() + 1}}%">{{ $tag->notes->count() }}</a></td>
-                    @elseif($tag->notes->count() > 0)
-                        <td><p style="width: {{ $tag->notes->count() + 1}}%">{{ $tag->notes->count() }}</p></td>
+                    <td>
+                        <a href="/home/{{ $tag->id }}" tabindex="-1">🔖{{ $tag->tagname }}</a>
+                    </td>
+                    @php
+                        $count = 0;
+                        foreach ($notes as $note) {
+                            if ($tag->id == $note->tag_id) {
+                                $count++;
+                            }
+                        }
+                    @endphp
+
+                    @if($count == 100)
+                        <form action="/promoted-to-book" method="post">
+                            @csrf
+                            <input type="hidden" name="tag_id" value="{{ $tag->id }}">
+                            <td class="stack-to-book"><a value="100" style="width: 100%">100 ！</a></td>
+                            <td class="stack-to-book"><input type="submit" value="👆ブック化" style="width: 100%" /></td>
+                        </form>
+                    @elseif($count > 0)
+                        <td><p style="width: {{ $tag->notes->count() + 1}}%">{{ $count }}</p></td>
+                        <td>{{ $tag->created_at->format('Y/m/d') }}</td>
                     @else
-                        <td><p style="width: {{ $tag->notes->count() }}%">{{ $tag->notes->count() }}</p></td>
+                        <td><p style="width: {{ $tag->notes->count() }}%">{{ $count }}</p></td>
+                        <td>{{ $tag->created_at->format('Y/m/d') }}</td>
                     @endif
-                    <td>{{ $tag->created_at->format('Y/m/d') }}</td>
+                    <!-- <td><input type="submit" value="{{ $tag->created_at->format('Y/m/d') }}" /></td> -->
                 </tr>
                 @endforeach
             </table>
-        </form>
+        <!-- </form> -->
     @endif
 
     @csrf
@@ -68,19 +86,24 @@
                 <th class="stack-days-th">積み上げブック数（1冊 = 100ノート）</th>
                 <th class="stack-create-th">達人到達日</th>
             </tr>
-            <tr>
-                <td><input type="text" tabindex="-1" value="📘オフライン活動"></td>
-                <td><img src="{{ asset('/images/table-book.png') }}" alt="book"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><input type="text" tabindex="-1" value="📘短編小説"></td>
-                <td><img src="{{ asset('/images/table-book.png') }}" alt="book"><img src="{{ asset('/images/table-book.png') }}" alt="book"></td>
-                <td></td>
-            </tr>
+            @if($books->count() == 0)
+                <tr>
+                    <td><input type="text" tabindex="-1" value="📘-"></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            @else
+                @foreach($books as $book)
+                    <tr>
+                        <td><input type="text" tabindex="-1" value="📘{{ $book->cover }}"></td>
+                        <td><img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}"></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+            @endif
             <tr>
                 <td><div>♾️達人の 挿絵</div></td>
-                <td><div>10000 + 12</div></td>
+                <td><div>1000 + 12</div></td>
                 <td><div>2027/04/02</div></td>
             </tr>
         </table>
@@ -89,14 +112,14 @@
     @if($tags->count() != 0)
     <div class="stack-tag-delete">
         <p>タグを削除する</p>
-        <form class="delete-tag-select" action="/delete_confirm" method="post">
+        <form class="delete-tag-select" action="/delete-confirm" method="post">
             <select  name="delete_tag_id">
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
                 @endforeach
             </select>
             @csrf
-            <input type="submit" value="！削除" />
+            <input type="submit" value="！削除確認" />
         </form>
     </div>
     @endif

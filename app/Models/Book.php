@@ -17,11 +17,6 @@ class Book extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function tag(): BelongsTo
-    {
-        return $this->belongsTo(Tag::class);
-    }
-
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);

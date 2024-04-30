@@ -19,7 +19,7 @@
             <div>
                 <h2>タグの削除</h2>
                 <div class="delete-tagname">
-                    <small class="delete-message">以下のタグと関連ノートが削除されます。</small>
+                    <small class="delete-message">以下のタグと、紐づけノートが削除されます。<br>ブック化した昇格済みノートは削除されません。</small>
                     <p>タグ名： 🔖{{ $delete_tag->tagname }}</p>
                     <p>略称： {{ $delete_tag->abbreviation }}</p>
                     <p>ノート数： {{ $notes->count() }}</p>
@@ -42,7 +42,7 @@
                     <div class="delete-message">
                         <p><small>※画像データはダウンロードできません。</small></p>
                         <p><small>※ダウンロードしたファイルは、メモ帳などの簡易テキストアプリで開くことをおすすめします。</small></p>
-                        <p><small>※ダウンロードする場合は、次の「タグを削除」実行前に必ず行ってください。</small></p>
+                        <p><small>※ダウンロードする場合は、「タグを削除」実行前に必ず行ってください。</small></p>
                     </div>
                 </div>
                 @endif
@@ -54,8 +54,8 @@
                         <input class="delete-submit-button" type="submit" value="！タグを削除">
                         <a class="cancel-button" href="/stack">キャンセル</a>
                     </div>
-                    <p>
-                        <small class="delete-message">※タグ削除後も、検索ページでのノート検索は可能です。</small>
+                    <p class="delete-message">
+                        <small >※タグ削除後も、検索ページでのノート検索は可能です。</small>
                     </p>
                 </form>
             </div>

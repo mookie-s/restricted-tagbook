@@ -356,24 +356,45 @@ footer {
     padding-right: 5px;
     border-radius: 3px;
 }
-.stack-table td a {
+/* .stack-table td input {
     display: inline-block;
     text-align: right;
     line-height: 30px;
     background: #39b6ff;
     padding-right: 5px;
     border-radius: 3px;
+} */
+.stack-to-book a {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    background: #39b6ff;
+    padding-right: 5px;
+    border-radius: 3px;
+}
+.stack-to-book input {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    background: #39b6ff;
+    padding-right: 5px;
+    border: 1px solid #f6701d;
+    border-radius: 3px;
+}
+.stack-to-book input:active {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: #545454;
+    background: #fff;
+    padding-right: 5px;
+    border: 1px solid #39b6ff;
+    border-radius: 3px;
 }
 .stack-table td input {
     display: inline-block;
     color: #fff;
     text-align: right;
-}
-.stack-table td input:focus {
-    color: #545454;
-    background-color: #fff;
-    text-align: left;
-    border-radius: 3px;
 }
 .stack-table td img {
     display: inline-block;
@@ -418,7 +439,7 @@ footer {
 .delete-message {
     color: #f6701d;
     line-height: 1.25;
-    margin: 5px 0;
+    margin: 5px 0 20px 0;
 }
 .delete-tagname {
     margin: 20px 0 10px 0;
@@ -455,7 +476,7 @@ footer {
 .confirm-buttons {
     display: flex;
     justify-content: left;
-    margin-top: 30px;
+    margin: 30px 0 0 0;
 }
 .delete-submit-button {
     color: #f6701d;
@@ -467,6 +488,85 @@ footer {
 .cancel-button {
     color: #545454;
     background-color: #fff;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-left: 10px;
+}
+/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+.promoted-to-book {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin-top: 150px;
+}
+.promoted-message {
+    color: #c1ff72;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+.promoted-tagname {
+    margin: 15px 0 10px 0;
+}
+.promoted-note-list {
+    margin: 10px 0 10px 0;
+}
+.promoted-note-list ul {
+    margin-bottom: 5px;
+}
+.book-radio {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5px;
+}
+.book-radio p {
+    background: #737373;
+    border: 1px solid #39b6ff;
+    border-radius: 3px;
+    padding: 3px 10px;
+    margin-right: 10px;
+}
+#content1, #content2 {
+    display: none;
+}
+.promoted-book-select {
+    color: #545454;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px 10px 5px 5px;
+    margin: 5px 5px 0 0;
+}
+.create-book {
+    width: 11em;
+    color: #545454;
+    /* font-weight: bold; */
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 5px 0;
+}
+.create-book-button {
+    color: #fff;
+    background-color: #f6701d;
+    border-radius: 3px;
+    padding: 3px 15px;
+    /* margin-left: 5px; */
+}
+.create-book-button:active {
+    color: #545454;
+    background-color: #fff;
+}
+.promoted-submit-button {
+    color: #fff;
+    background-color: #39b6ff;
+    border: 2px solid #f6701d;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 5px;
+}
+.promoted-cancel-button {
+    color: #fff;
+    background-color: #737373;
     border-radius: 3px;
     padding: 8px 15px;
     margin-left: 10px;
