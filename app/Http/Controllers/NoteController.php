@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Tag;
 use App\Models\Note;
+use App\Models\Book;
 
 class NoteController extends Controller
 {
@@ -22,9 +23,18 @@ class NoteController extends Controller
 
     public function store(NotePostRequest $request): RedirectResponse
     {
+        $user_id = Auth::id();
+        $tag_id = $request->tag_id;
+        $tag = Tag::where('user_id', $user_id)->find($tag_id);
+        $book = Book::where('user_id', $user_id)->where('cover', $tag->tagname)->first();
+
         $note = new Note();
-        $note->user_id = Auth::id();
-        $note->tag_id = $request->tag_id;
+        $note->user_id = $user_id;
+        $note->tag_id = $tag_id;
+        // 該当タグがすでに達人達成している場合は同名のブックへの紐づけを行う
+        if ($tag->mastered == 1) {
+            $note->book_id = $book->id;
+        }
         if ($request->file('image')) {
             $image_path = $request->file('image')->store('public/images');
             $note->image = $image_path;
@@ -33,6 +43,10 @@ class NoteController extends Controller
         $note->story = $request->story;
         if ($request->has('to_break')) {
             $note->break = 1;
+        }
+        // 該当タグがすでに達人達成している場合は作成ノートを最初から昇格させる
+        if ($tag->mastered == 1) {
+            $note->promoted = 1;
         }
         $note->save();
 

@@ -19,12 +19,13 @@
     </div>
     <div class="mastered-tags-tab">
         <ul>
+            |
             @foreach($mastered_tags as $mastered_tag)
-            |<li><a href="/home/{{ $mastered_tag->id }}">♾️ {{ $mastered_tag->abbreviation }}</a></li>|
+            <li><a href="/home/{{ $mastered_tag->id }}">🔖{{ $mastered_tag->abbreviation }}</a></li>|
             @endforeach
         </ul>
-    <p class="promoted-message">📝{{ $get_tag->tagname ?? 'すべて' }}</p>
     </div>
+    <p class="promoted-message">📝{{ $get_tag->tagname ?? 'すべて' }}</p>
     @if($tags->count() == 0)
         <div>
             <a class="create-tag-button" href="/stack">最初のタグを登録する</a>

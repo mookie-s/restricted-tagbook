@@ -130,13 +130,14 @@ footer {
 /* home */
 .tags-tab ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     padding: 5px 10px;
 }
 .tags-tab ul li {
-    width: 100%;
+    width: 16%;
     text-align: center;
+    border-radius: 3px;
     padding: 3px 0;
 }
 .tags-tab ul li a {
@@ -144,20 +145,20 @@ footer {
 }
 .tags-tab ul li a:active {
     background-color: #737373;
+    border-radius: 3px;
 }
 .mastered-tags-tab ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     padding: 5px 10px;
 }
 .mastered-tags-tab ul li {
-    width: 100%;
+    width: 20%;
     text-align: center;
     background: -moz-linear-gradient(65deg, #5170ff, #ff66c4);
     background: -webkit-linear-gradient(65deg, #5170ff, #ff66c4);
     background: linear-gradient(25deg right, #5170ff, #ff66c4);
-    text-align: center;
     border-radius: 3px;
     padding: 3px 0;
 }
@@ -166,7 +167,6 @@ footer {
 }
 .mastered-tags-tab ul li a:active {
     background-color: #737373;
-    text-align: center;
     border-radius: 3px;
 }
 .note-list {
@@ -380,6 +380,14 @@ footer {
     text-align: right;
     line-height: 30px;
     background: #f6701d;
+    padding-right: 5px;
+    border-radius: 3px;
+}
+.stack-table td a {
+    display: block;
+    text-align: right;
+    line-height: 30px;
+    /* background: #f6701d; */
     padding-right: 5px;
     border-radius: 3px;
 }

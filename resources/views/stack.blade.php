@@ -25,7 +25,7 @@
     @elseif($tags->count() < 5)
         <div class="tag-form">
             <p>タグを登録する</p>
-            <form action="/store_tag" method="post">
+            <form action="/store-tag" method="post">
                 @csrf
                 <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
@@ -66,10 +66,10 @@
                         </form>
                     @elseif($count > 0)
                         <td><p style="width: {{ $count + 1}}%">{{ $count }}</p></td>
-                        <td>{{ $tag->created_at->format('Y/m/d') }}</td>
+                        <td>{{ $tag->created_at->isoFormat('Y/MM/DD') }}</td>
                     @else
                         <td><p style="width: {{ $count }}%">{{ $count }}</p></td>
-                        <td>{{ $tag->created_at->format('Y/m/d') }}</td>
+                        <td>{{ $tag->created_at->isoFormat('Y/MM/DD') }}</td>
                     @endif
                     <!-- <td><input type="submit" value="{{ $tag->created_at->format('Y/m/d') }}" /></td> -->
                 </tr>
@@ -78,36 +78,141 @@
         <!-- </form> -->
     @endif
 
-    @csrf
-    <form>
-        <table class="stack-table">
+    <table class="stack-table">
+        <tr>
+            <th>ブック名</th>
+            <th class="stack-days-th">積み上げブック数（1冊 = 100ノート）</th>
+            <th class="stack-create-th">達人到達日</th>
+        </tr>
+        @if($books->count() == 0)
             <tr>
-                <th>ブック名</th>
-                <th class="stack-days-th">積み上げブック数（1冊 = 100ノート）</th>
-                <th class="stack-create-th">達人到達日</th>
+                <td><input type="text" tabindex="-1" value="📘-"></td>
+                <td>-</td>
+                <td>-</td>
             </tr>
-            @if($books->count() == 0)
+        @else
+            @foreach($books as $book)
                 <tr>
-                    <td><input type="text" tabindex="-1" value="📘-"></td>
-                    <td>-</td>
-                    <td>-</td>
+                    @php
+                        $promoted_note_count = 0;
+                        foreach ($promoted_notes as $promoted_note) {
+                            if ($book->id == $promoted_note->book_id) {
+                                $promoted_note_count++;
+                            }
+                        }
+                    @endphp
+
+                    @if($promoted_note_count >= 1000)
+                        <td>
+                        @foreach($mastered_tags as $mastered_tag)
+                            @if($mastered_tag->tagname == $book->cover)
+                                <div tabindex="-1">達人の {{ $mastered_tag->abbreviation }}</div>
+                            @endif
+                        @endforeach
+                        </td>
+                        <td><div>📝1000 + {{ $promoted_note_count - 1000 }}</div></td>
+                        <td>
+                        @foreach($mastered_tags as $mastered_tag)
+                            @if($mastered_tag->tagname == $book->cover)
+                                <div>{{ $mastered_tag->updated_at->isoFormat('Y/MM/DD') }}</div>
+                            @endif
+                        @endforeach
+                        </td>
+                    @elseif($promoted_note_count >= 900)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り１冊</td>
+                    @elseif($promoted_note_count >= 800)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り２冊</td>
+                    @elseif($promoted_note_count >= 700)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り３冊</td>
+                    @elseif($promoted_note_count >= 600)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り４冊</td>
+                    @elseif($promoted_note_count >= 500)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り５冊</td>
+                    @elseif($promoted_note_count >= 400)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り６冊</td>
+                    @elseif($promoted_note_count >= 300)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り７冊</td>
+                    @elseif($promoted_note_count >= 200)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}">
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り８冊</td>
+                    @elseif($promoted_note_count >= 100)
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td>
+                            <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
+                        </td>
+                        <td>残り９冊</td>
+                    @endif
                 </tr>
-            @else
-                @foreach($books as $book)
-                    <tr>
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a>
-                        <td><img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}"></td>
-                        <td></td>
-                    </tr>
-                @endforeach
-            @endif
-            <tr>
-                <td><div>♾️達人の 挿絵</div></td>
-                <td><div>1000 + 12</div></td>
-                <td><div>2027/04/02</div></td>
-            </tr>
-        </table>
-    </form>
+            @endforeach
+        @endif
+    </table>
 
     @if($tags->count() != 0)
     <div class="stack-tag-delete">
