@@ -16,7 +16,7 @@ class StackController extends Controller
     public function index(): View
     {
         $user_id = Auth::id();
-        $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->take(5)->get();
+        $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->where('promoted', 0)->get();
         $books = Book::where('user_id', $user_id)->get();
 
@@ -81,7 +81,7 @@ class StackController extends Controller
     public function delete_confirm(Request $request): View
     {
         $user_id = Auth::id();
-        $delete_tag_id = $request['delete_tag_id'];
+        $delete_tag_id = $request->delete_tag_id;
         $delete_tag = Tag::where('user_id', $user_id)->find($delete_tag_id);
         $notes = Note::where('user_id', $user_id)->where('tag_id', $delete_tag_id)->where('promoted', 0)->orderBY('id', 'desc')->get();
 

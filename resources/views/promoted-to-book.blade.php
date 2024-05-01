@@ -44,7 +44,7 @@
                         @endif
                     </div>
                     <p class="promoted-message"><small>※同名ブックがすでに存在するにもかかわらず "新規ブック" が表示される場合は、<br>タグ名が正しくない恐れがあります。その際は下記のキャンセルボタンから<br>ページを戻り、正しいタグ名に修正してから再度ブック化してください。</small></p>
-                    <div class="confirm-buttons">
+                    <div class="promoted-confirm-buttons">
                         @csrf
                         <input type="hidden" name="same_cover_book_id" value="{{ $same_cover_book->id ?? '' }}">
                         <input type="hidden" name="tag_id" value="{{ $tag->id }}">

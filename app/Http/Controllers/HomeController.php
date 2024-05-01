@@ -13,18 +13,22 @@ class HomeController extends Controller
     public function index(): View
     {
         $user_id = Auth::id();
-        $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->get();
+        $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();
+        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(5)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc')->take(100)->get();
 
-        return view('/home', compact('tags', 'notes'));
+        return view('/home', compact('tags', 'notes', 'mastered_tags'));
     }
 
-    public function show(string $tag): View
+    public function show(string $tag_id): View
     {
+        \Log::debug($tag_id);
         $user_id = Auth::id();
-        $tags = Tag::where('user_id', $user_id)->where('inactive', 0)->get();
-        $notes = Note::withTrashed()->where('user_id', $user_id)->where('break', 0)->where('tag_id', $tag)->orderBy('id', 'desc')->take(100)->get();
+        $get_tag = Tag::where('user_id', $user_id)->find($tag_id);
+        $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();
+        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(5)->get();
+        $notes = Note::where('user_id', $user_id)->where('break', 0)->where('tag_id', $tag_id)->orderBy('id', 'desc')->take(100)->get();
 
-        return view('/home', compact('tags', 'notes'));
+        return view('/home', compact('get_tag', 'tags', 'notes', 'mastered_tags'));
     }
 }

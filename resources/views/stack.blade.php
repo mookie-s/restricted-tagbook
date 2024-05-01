@@ -65,10 +65,10 @@
                             <td class="stack-to-book"><input type="submit" value="👆ブック化" style="width: 100%" /></td>
                         </form>
                     @elseif($count > 0)
-                        <td><p style="width: {{ $tag->notes->count() + 1}}%">{{ $count }}</p></td>
+                        <td><p style="width: {{ $count + 1}}%">{{ $count }}</p></td>
                         <td>{{ $tag->created_at->format('Y/m/d') }}</td>
                     @else
-                        <td><p style="width: {{ $tag->notes->count() }}%">{{ $count }}</p></td>
+                        <td><p style="width: {{ $count }}%">{{ $count }}</p></td>
                         <td>{{ $tag->created_at->format('Y/m/d') }}</td>
                     @endif
                     <!-- <td><input type="submit" value="{{ $tag->created_at->format('Y/m/d') }}" /></td> -->
@@ -95,7 +95,7 @@
             @else
                 @foreach($books as $book)
                     <tr>
-                        <td><input type="text" tabindex="-1" value="📘{{ $book->cover }}"></td>
+                        <td><a tabindex="-1">📘{{ $book->cover }}</a>
                         <td><img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}"></td>
                         <td></td>
                     </tr>

@@ -31,7 +31,7 @@
                         <input type="hidden" name="delete_tag_id" value="{{ $delete_tag->id }}">
                         @foreach($notes as $note)
                         <ul>
-                            <li>> {{ $note->created_at->isoFormat('Y/MM/DD (ddd)') }}「 {{ $note->title }} 」</li>
+                            <li>📝 {{ $note->created_at->isoFormat('Y/MM/DD (ddd)') }}「 {{ $note->title }} 」</li>
                         </ul>
                         @endforeach
                         <hr>

@@ -139,8 +139,35 @@ footer {
     text-align: center;
     padding: 3px 0;
 }
-.tags-tab ul li:active {
+.tags-tab ul li a {
+    display: block;
+}
+.tags-tab ul li a:active {
     background-color: #737373;
+}
+.mastered-tags-tab ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+.mastered-tags-tab ul li {
+    width: 100%;
+    text-align: center;
+    background: -moz-linear-gradient(65deg, #5170ff, #ff66c4);
+    background: -webkit-linear-gradient(65deg, #5170ff, #ff66c4);
+    background: linear-gradient(25deg right, #5170ff, #ff66c4);
+    text-align: center;
+    border-radius: 3px;
+    padding: 3px 0;
+}
+.mastered-tags-tab ul li a {
+    display: block;
+}
+.mastered-tags-tab ul li a:active {
+    background-color: #737373;
+    text-align: center;
+    border-radius: 3px;
 }
 .note-list {
     display: flex;
@@ -555,6 +582,11 @@ footer {
 .create-book-button:active {
     color: #545454;
     background-color: #fff;
+}
+.promoted-confirm-buttons {
+    display: flex;
+    justify-content: left;
+    margin: 30px 0;
 }
 .promoted-submit-button {
     color: #fff;
