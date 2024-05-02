@@ -35,12 +35,13 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/home/{tag}', [HomeController::class, 'show'])->middleware('auth');
 
 Route::get('/note', [NoteController::class, 'index'])->middleware('auth');
-Route::post('/note', [NoteController::class, 'store']);
+Route::get('/note', [NoteController::class, 'store'])->middleware('auth');
 
 Route::get('/broken-note', [BrokenNoteController::class, 'index'])->middleware('auth');
 Route::post('/broken-note', [BrokenNoteController::class, 'update']);
 
 Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
+Route::post('/search', [SearchController::class, 'index'])->middleware('auth');
 
 Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
 Route::post('store-tag', [StackController::class, 'store_tag']);

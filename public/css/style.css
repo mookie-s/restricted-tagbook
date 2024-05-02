@@ -295,19 +295,19 @@ footer {
     padding: 0 5px;
     border-radius: 3px;
 }
-.search-select {
+.search-key {
     color: #545454;
     background-color: #fff;
     border-radius: 3px;
-    padding: 0 5px;
-    margin-left: 7px;
+    padding: 2px 5px;
+    margin-right: 5px;
 }
 .search-button {
     color: #fff;
     background-color: #39b6ff;
     border-radius: 3px;
-    padding: 0 15px;
-    margin-left: 15px;
+    padding: 2px 15px;
+    margin-left: 5px;
 }
 .search-button:active {
     color: #545454;

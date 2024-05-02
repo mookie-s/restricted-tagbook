@@ -14,7 +14,6 @@
             @foreach($tags as $tag)
             <li><a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a></li>|
             @endforeach
-            <!-- <li><a href="/home/none">タグなし</a></li> -->
         </ul>
     </div>
     <div class="mastered-tags-tab">
@@ -41,7 +40,7 @@
             @if($note->image)
             <img src="{{ Storage::url($note->image) }}" alt="{{ $note->title }}">
             @else
-            <img src="{{ asset('/images/note-image-tag5.png') }}" alt="{{ $note->title }}">
+            <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image">
             @endif
         </div>
         <div class="note-list-data">

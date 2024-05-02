@@ -219,6 +219,7 @@
         <p>タグを削除する</p>
         <form class="delete-tag-select" action="/delete-confirm" method="post">
             <select  name="delete_tag_id">
+                    <option value="">▼ タグを選択</option>
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
                 @endforeach

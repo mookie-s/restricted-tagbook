@@ -1,83 +1,73 @@
 <x-layouts.base-layout>
     <x-slot:title>
-        キーワード検索
+        全ノート検索
     </x-slot:title>
 
     <x-slot:meta_description>
-        キーワード検索
+        すべてのノートから検索
     </x-slot:meta_description>
 
-    <h2>ノート検索</h2>
-    
+    <h2>全ノート検索</h2>
+    <form action="/search" method="post">
         @csrf
-        <form name="search-keyword" action="post">
-            <div class="search-tab">
-                <div>
-                    <input class="search-input" type="text" placeholder="キーワード">
-                </div>
-                <div>
-                    <select class="search-select" name="year-select">
-                        <option value="year">年指定 ▼</option>
-                        <option value="2025">2024年</option>
-                        <option value="2024">2023年</option>
-                    </select>
-                </div>
-                <div>
-                    <select class="search-select" name="month-select">
-                        <option value="month">月指定 ▼</option>
-                        <option value="01">1月</option>
-                        <option value="02">2月</option>
-                        <option value="03">3月</option>
-                        <option value="04">4月</option>
-                        <option value="05">5月</option>
-                        <option value="06">6月</option>
-                        <option value="07">7月</option>
-                        <option value="08">8月</option>
-                        <option value="09">9月</option>
-                        <option value="10">10月</option>
-                        <option value="11">11月</option>
-                        <option value="12">12月</option>
-                    </select>
-                </div>
-                <div>
-                    <input class="search-button" type="submit" value="検索">
-                </div>
+        <div class="search-tab">
+            <div>
+                <select class="search-key" name="tagname">
+                        <option value="">▼ タグを選択</option>
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->tagname }}" @if($tag->tagname == $search_tagname) selected @endif>🔖{{ $tag->tagname }}</option>
+                    @endforeach
+                </select>
             </div>
-        </form>
-    <!-- 以下、検索ノートリスト -->
+            <div>
+                <select class="search-key" name="year">
+                    <option value="">▼ 年指定</option>
+                    @foreach($years as $year)
+                        <option value="{{ $year }}" @if($year == $search_year) selected @endif>{{ $year }}年</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <select class="search-key" name="month">
+                    <option value="">▼ 月指定</option>
+                    @foreach($months as $month)
+                        <option value="{{ $month }}" @if($month == $search_month) selected @endif>{{ $month }}月</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="search-tab">
+            <div>
+                <input class="search-key" type="search" name="keyword" value="{{ $search_keyword }}" placeholder="キーワード" autofocus>
+                <input class="search-button" type="submit" value="検索">
+            </div>
+        </div>
+    </form>
+    @if($search_tagname || $search_year || $search_month || $search_keyword)
+        <p class="promoted-message">📝 検索 >@if($search_tagname) 🔖@endif{{ $search_tagname }}@if($search_tagname) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif {{ $search_keyword }}</p>
+    @endif
+
+    @foreach($searched_notes as $searched_note)
     <div class="note-list">
         <div class="note-list-image">
-            <img src="{{ asset('/images/no-image.png') }}" alt="">
+            @if($searched_note->image)
+            <img src="{{ Storage::url($searched_note->image) }}" alt="{{ $searched_note->title }}">
+            @else
+            <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image">
+            @endif
         </div>
         <div class="note-list-data">
             <div class="note-list-headline">
-                <div>2024-04-06（日）</div>
-                <div>🔖オフライン活動</div>
+                <div>{{ $searched_note->created_at->isoFormat('YYYY/MM/DD (ddd)') }}</div>
+                <div>🔖{{ $searched_note->tag->tagname }}</div>
             </div>
             <div class="note-list-title">
-                <p>ノートのタイトル</p>
+                <p>「 {{ $searched_note->title }} 」</p>
             </div>
             <div class="note-list-detail">
-                <p>ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容</p>
+                <p>{{ Str::limit($searched_note->story, '100', '...')}}</p>
             </div>
         </div>
     </div>
-    <!-- 検索ノートリスト２つめ -->
-    <div class="note-list">
-        <div class="note-list-image">
-            <img src="{{ asset('/images/no-image.png') }}" alt="">
-        </div>
-        <div class="note-list-data">
-            <div class="note-list-headline">
-                <div>2024-04-06（日）</div>
-                <div>🔖IT系メモ</div>
-            </div>
-            <div class="note-list-title">
-                <p>ノートのタイトル</p>
-            </div>
-            <div class="note-list-detail">
-                <p>ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容ノートの内容</p>
-            </div>
-        </div>
-    </div>
+    @endforeach
 </x-layouts.base-layout>
