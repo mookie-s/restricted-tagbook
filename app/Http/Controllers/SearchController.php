@@ -84,7 +84,8 @@ class SearchController extends Controller
         if (empty($search_tagname) && empty($search_year) && empty($search_month) && empty($search_keyword)) {
             $searched_notes = [];
         } else {
-            $searched_notes = $search_query->get();
+            // $searched_notes = $search_query->get();
+            $searched_notes = $search_query->simplePaginate(100);
         }
 
         return view('/search', compact('tags' ,'years', 'months', 'search_tagname', 'search_year', 'search_month', 'search_keyword', 'searched_notes'));

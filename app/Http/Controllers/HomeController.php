@@ -22,7 +22,6 @@ class HomeController extends Controller
 
     public function show(string $tag_id): View
     {
-        \Log::debug($tag_id);
         $user_id = Auth::id();
         $get_tag = Tag::where('user_id', $user_id)->find($tag_id);
         $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();

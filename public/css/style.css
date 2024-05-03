@@ -101,6 +101,15 @@ footer {
 .footer-nav ul li a img {
     max-width: 22%;
 }
+.pagination {
+    font-size: 10pt;
+}
+.pagination li {
+    display: inline-block;
+}
+.bottom-blank {
+    margin-bottom: 120px;
+}
 /* 各ページ
 -------------------------- */
 /* hello */
@@ -289,6 +298,13 @@ footer {
     display: flex;
     margin: 5px;
 }
+.search-tab a {
+    color: #fff;
+    background-color: #737373;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin-left: 15px;
+}
 .search-input {
     color: #545454;
     background-color: #fff;
@@ -307,7 +323,6 @@ footer {
     background-color: #39b6ff;
     border-radius: 3px;
     padding: 2px 15px;
-    margin-left: 5px;
 }
 .search-button:active {
     color: #545454;

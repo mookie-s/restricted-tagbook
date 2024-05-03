@@ -8,8 +8,8 @@
     </x-slot:meta_description>
 
     <h2>全ノート検索</h2>
-    <form action="/search" method="post">
-        @csrf
+    <form action="/search" method="get">
+        <!-- @csrf -->
         <div class="search-tab">
             <div>
                 <select class="search-key" name="tagname">
@@ -40,11 +40,12 @@
             <div>
                 <input class="search-key" type="search" name="keyword" value="{{ $search_keyword }}" placeholder="キーワード" autofocus>
                 <input class="search-button" type="submit" value="検索">
+                <a href="/search">リセット</a>
             </div>
         </div>
     </form>
     @if($search_tagname || $search_year || $search_month || $search_keyword)
-        <p class="promoted-message">📝 検索 >@if($search_tagname) 🔖@endif{{ $search_tagname }}@if($search_tagname) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif {{ $search_keyword }}</p>
+        <p class="promoted-message">📝 検索 >@if($search_tagname) 🔖@endif{{ $search_tagname }}@if($search_tagname) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif @if($search_keyword)"{{ $search_keyword }} "@endif</p>
     @endif
 
     @foreach($searched_notes as $searched_note)
@@ -70,4 +71,7 @@
         </div>
     </div>
     @endforeach
+    @if(!empty($searched_notes))
+        {{ $searched_notes->appends(request()->query())->links() }}
+    @endif
 </x-layouts.base-layout>

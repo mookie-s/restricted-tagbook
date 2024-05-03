@@ -25,6 +25,7 @@
     <main class="wrapper">
         {{ $slot }}
     </main>
+    <div class="bottom-blank"></div>
     <footer class="wrapper">
         <nav class="footer-nav">
             <a href="/note"><img class="footer-pen" src="{{ asset('/images/pen-icon.png') }}" alt="ノート作成" /></a>
