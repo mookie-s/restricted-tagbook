@@ -202,8 +202,8 @@ footer {
     padding: 5px 0 0 0;
 }
 /* note */
-.preview-back {
-    margin-top: 10px;
+.note-message {
+    margin-left: 5px;
 }
 .file__label02 {
     display: block;

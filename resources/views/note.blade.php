@@ -16,6 +16,9 @@
 <body>
     <main class="wrapper">
         <h2>ノートの作成</h2>
+        <div class="note-message">
+            <small class="promoted-message">※１タグにつき１日１投稿まで可能です</small>
+        </div>
         @if($tags->count() == 0)
         <div>
             <a class="create-tag-button" href="/stack">最初のタグを登録する</a>
@@ -35,11 +38,15 @@
                 <select class="note-tag-select" name="tag_id">
                     <option value="">▼ タグを選択</option>
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}"
-                        @if(old('tag_id') == $tag->id)
-                            selected
-                        @endif
-                        >🔖{{ $tag->tagname }}</option>
+                        @foreach($unfinished_tag_ids as $unfinished_tag_id)
+                            @if($unfinished_tag_id == $tag->id)
+                                <option value="{{ $tag->id }}"
+                                @if(old('tag_id') == $tag->id)
+                                    selected
+                                @endif
+                                >🔖{{ $tag->tagname }}</option>
+                            @endif
+                        @endforeach
                     @endforeach
                 </select>
                 @csrf

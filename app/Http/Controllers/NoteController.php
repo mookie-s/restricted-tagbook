@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\NotePostRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Note;
 use App\Models\Book;
@@ -18,7 +19,25 @@ class NoteController extends Controller
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->get();
         $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
-        return view('/note', compact('tags', 'break_note'));
+
+        // TODO 以下、１タグ１日１投稿縛りの仕様による、
+        // 本日投稿済みタグ除外のためのアルゴリズム生成(もっと良い方法あるかも？)
+        $today = Carbon::today();
+        $today_notes = Note::whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
+
+        $tag_ids = [];
+        foreach ($tags as $tag) {
+            array_push($tag_ids, $tag->id);
+        }
+
+        $finished_tag_ids = [];
+        foreach ($today_notes as $today_note) {
+            array_push($finished_tag_ids, $today_note->tag_id);
+        }
+
+        $unfinished_tag_ids = array_diff($tag_ids, $finished_tag_ids);
+
+        return view('/note', compact('tags', 'unfinished_tag_ids', 'break_note'));
     }
 
     public function store(NotePostRequest $request): RedirectResponse
