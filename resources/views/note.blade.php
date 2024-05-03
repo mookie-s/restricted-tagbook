@@ -49,8 +49,9 @@
                 @endif
             </div>
             <div class="note-story">
-                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）">{{ old('story') }}</textarea>
+                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
             </div>
+            <p id="input-length">0/800文字</p>
             <div class="note-buttons">
                 <div>
                     <input class="note-submit-button" type="submit" value="完成">
@@ -68,6 +69,7 @@
     </main>
 
     <script>
+    // アップロード画像のプレビュー
     $(function () {
         $('.preview-back input[type=file]').on('change', function () {
             let elem = this;
@@ -81,6 +83,10 @@
             };
         });
     });
+    // textareaの文字数カウンター
+    function ShowLength( str ) {
+    document.getElementById("input-length").innerHTML = str.length + "/800文字";
+}
     </script>
 </body>
 </html>
