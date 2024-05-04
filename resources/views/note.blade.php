@@ -92,8 +92,8 @@
     });
     // textareaの文字数カウンター
     function ShowLength( str ) {
-    document.getElementById("input-length").innerHTML = str.length + "/800文字";
-}
+        document.getElementById("input-length").innerHTML = str.length + "/800文字";
+    }
     </script>
 </body>
 </html>

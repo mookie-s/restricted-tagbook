@@ -46,7 +46,7 @@
                 @foreach ($tags as $tag)
                 <tr>
                     <td>
-                        <a href="/home/{{ $tag->id }}" tabindex="-1">🔖{{ $tag->tagname }}</a>
+                        <a style="background: #737373" href="/home/{{ $tag->id }}" tabindex="-1">🔖{{ $tag->tagname }}</a>
                     </td>
                     @php
                         $count = 0;
@@ -61,14 +61,14 @@
                         <form action="/promoted-to-book" method="post">
                             @csrf
                             <input type="hidden" name="tag_id" value="{{ $tag->id }}">
-                            <td class="stack-to-book"><a value="100" style="width: 100%">100 ！</a></td>
-                            <td class="stack-to-book"><input type="submit" value="👆ブック化" style="width: 100%" /></td>
+                            <td class="stack-to-book"><input value="100！" style="text-align: center"></input></td>
+                            <td class="stack-to-book"><input type="submit" value="👆ブック化" style="border: 1px solid #f6701d" /></td>
                         </form>
                     @elseif($count > 0)
-                        <td><p style="width: {{ $count + 1}}%">{{ $count }}</p></td>
+                        <td><a style="width: {{ $count }}%">{{ $count }}</a></td>
                         <td>{{ $tag->created_at->isoFormat('Y/MM/DD') }}</td>
                     @else
-                        <td><p style="width: {{ $count }}%">{{ $count }}</p></td>
+                        <td><a style="width: {{ $count }}%; background: #737373">{{ $count }}</a></td>
                         <td>{{ $tag->created_at->isoFormat('Y/MM/DD') }}</td>
                     @endif
                     <!-- <td><input type="submit" value="{{ $tag->created_at->format('Y/m/d') }}" /></td> -->
@@ -119,7 +119,7 @@
                         @endforeach
                         </td>
                     @elseif($promoted_note_count >= 900)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -133,7 +133,7 @@
                         </td>
                         <td>残り１冊</td>
                     @elseif($promoted_note_count >= 800)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -146,7 +146,7 @@
                         </td>
                         <td>残り２冊</td>
                     @elseif($promoted_note_count >= 700)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -158,7 +158,7 @@
                         </td>
                         <td>残り３冊</td>
                     @elseif($promoted_note_count >= 600)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -169,7 +169,7 @@
                         </td>
                         <td>残り４冊</td>
                     @elseif($promoted_note_count >= 500)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -179,7 +179,7 @@
                         </td>
                         <td>残り５冊</td>
                     @elseif($promoted_note_count >= 400)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -188,7 +188,7 @@
                         </td>
                         <td>残り６冊</td>
                     @elseif($promoted_note_count >= 300)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -196,14 +196,14 @@
                         </td>
                         <td>残り７冊</td>
                     @elseif($promoted_note_count >= 200)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
                         </td>
                         <td>残り８冊</td>
                     @elseif($promoted_note_count >= 100)
-                        <td><a tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
                         </td>
