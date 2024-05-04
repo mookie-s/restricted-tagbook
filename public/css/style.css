@@ -201,6 +201,28 @@ footer {
     font-weight: bold;
     padding: 5px 0 0 0;
 }
+.link-box {
+    position: relative;
+}
+.link-box button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    /* buttonのスタイル削除 */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+.link-box button:hover {
+    background-color: #545454;
+    opacity: 0.2;
+}
 /* note */
 .note-message {
     margin-left: 5px;

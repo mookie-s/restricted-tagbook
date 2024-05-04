@@ -35,25 +35,28 @@
         </div>
     @endif
     @foreach($notes as $note)
-    <div class="note-list">
-        <div class="note-list-image">
-            @if($note->image)
-            <img src="{{ Storage::url($note->image) }}" alt="{{ $note->title }}">
-            @else
-            <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image">
-            @endif
-        </div>
-        <div class="note-list-data">
-            <div class="note-list-headline">
-                <div>{{ $note->created_at->isoFormat('YYYY/MM/DD (ddd)') }}</div>
-                <div>🔖{{ $note->tag->tagname }}</div>
+    <div class="link-box">
+        <div class="note-list">
+            <div class="note-list-image">
+                @if($note->image)
+                <img src="{{ Storage::url($note->image) }}" alt="{{ $note->title }}">
+                @else
+                <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image">
+                @endif
             </div>
-            <div class="note-list-title">
-                <p>「 {{ $note->title }} 」</p>
+            <div class="note-list-data">
+                <div class="note-list-headline">
+                    <div>{{ $note->created_at->isoFormat('YYYY/MM/DD (ddd)') }}</div>
+                    <div>🔖{{ $note->tag->tagname }}</div>
+                </div>
+                <div class="note-list-title">
+                    <p>「 {{ $note->title }} 」</p>
+                </div>
+                <div class="note-list-detail">
+                    <p>{{ Str::limit($note->story, '100', '...')}}</p>
+                </div>
             </div>
-            <div class="note-list-detail">
-                <p>{{ Str::limit($note->story, '100', '...')}}</p>
-            </div>
+            <button type="submit"></button>
         </div>
     </div>
     @endforeach
