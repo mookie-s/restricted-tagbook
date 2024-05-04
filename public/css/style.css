@@ -15,6 +15,9 @@ body {
     min-height: 100vh;
     background-color: #545454 !important;
 }
+h2 {
+    font-size: 1.5rem;;
+}
 a {
     color: #fff !important;
     text-decoration: none !important;
@@ -187,7 +190,7 @@ footer {
     margin-bottom: 7px;
 }
 .note-list-image img {
-    width: 128px;
+    width: 134px;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 3px;

@@ -33,6 +33,7 @@
             <a class="first-note-button" href="/note">最初のノートを書く</a>
         </div>
     @endif
+
     <!-- この$iはモーダルに各ノート内容を表示するために使用 -->
     <?php $i = 0; ?>
     @foreach($notes as $note)
