@@ -9,15 +9,15 @@ html {
     font-size: 100%;
 }
 body {
-    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif !important;
     line-height: 1.6;
-    color: #fff;
+    color: #fff !important;
     min-height: 100vh;
-    background-color: #545454;
+    background-color: #545454 !important;
 }
 a {
-    color: #fff;
-    text-decoration: none;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 li {
     list-style: none;
@@ -27,7 +27,7 @@ li {
     margin: 0 auto;
     background-color: #545454;
 }
-/* header */
+/* ■■■■■■■ header ■■■■■■■ */
 header {
     text-align: center;
 }
@@ -55,7 +55,7 @@ hr {
     height: 1px;
     border: none;
 }
-/* main */
+/* ■■■■■■■ main ■■■■■■■ */
 main {
     background-color: #545454;
     padding: 5px 10px;
@@ -70,7 +70,7 @@ main {
 .button:hover {
     background: #f6701d;
 }
-/* footer */
+/* ■■■■■■■ footer ■■■■■■■ */
 footer {
     text-align: center;
 }
@@ -112,7 +112,7 @@ footer {
 }
 /* 各ページ
 -------------------------- */
-/* hello */
+/* ■■■■■■■ hello ■■■■■■■ */
 .hello-about {
     display: flex;
     justify-content: space-between;
@@ -136,7 +136,7 @@ footer {
     text-align: center;
     margin-top: 50px;
 }
-/* home */
+/* ■■■■■■■ home ■■■■■■■ */
 .tags-tab ul {
     display: flex;
     justify-content: left;
@@ -187,7 +187,7 @@ footer {
     margin-bottom: 7px;
 }
 .note-list-image img {
-    width: 100px;
+    width: 128px;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 3px;
@@ -223,7 +223,37 @@ footer {
     background-color: #545454;
     opacity: 0.2;
 }
-/* note */
+/* モーダル */
+.modal-content {
+    color: #545454;
+    background-color: #f3fbff;
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+}
+.modal-content {
+    letter-spacing: 1px;
+}
+.modal-body img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 3px;
+}
+.modal-detail {
+    margin: 0px 15px;
+}
+.modal-detail h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+.modal-detail p {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    white-space: pre-wrap;
+}
+.modal-footer button {
+    font-size: 0.85rem;
+}
+/* ■■■■■■■ note ■■■■■■■ */
 .note-message {
     margin-left: 5px;
 }
@@ -320,7 +350,7 @@ footer {
     padding: 8px 15px;
     margin-right: 5px;
 }
-/* search */
+/* ■■■■■■■ search ■■■■■■■ */
 .search-tab {
     display: flex;
     margin: 5px;
@@ -355,7 +385,7 @@ footer {
     color: #545454;
     background-color: #fff;
 }
-/* stack */
+/* ■■■■■■■ stack ■■■■■■■ */
 .first-note-button {
     color: #fff;
     background-color: #39b6ff;
@@ -396,6 +426,7 @@ footer {
 }
 .stack-table {
     width: 100%;
+    border-collapse: separate;
     border-spacing: 5px;
     margin: 10px 0 30px 0;
 }
@@ -417,30 +448,31 @@ footer {
     text-align: left;
     border-radius: 3px;
 }
-.stack-table td p {
+/* .stack-table td p {
     display: inline-block;
     text-align: right;
     line-height: 30px;
     background: #f6701d;
     padding-right: 5px;
     border-radius: 3px;
-}
+} */
 .stack-table td a {
     display: block;
     text-align: right;
     line-height: 30px;
-    /* background: #f6701d; */
+    background: #f6701d;
     padding-right: 5px;
     border-radius: 3px;
 }
-/* .stack-table td input {
+.stack-table td input {
+    width: 100%;
     display: inline-block;
     text-align: right;
     line-height: 30px;
     background: #39b6ff;
     padding-right: 5px;
     border-radius: 3px;
-} */
+}
 .stack-to-book a {
     display: inline-block;
     text-align: center;
@@ -455,7 +487,7 @@ footer {
     line-height: 30px;
     background: #39b6ff;
     padding-right: 5px;
-    border: 1px solid #f6701d;
+    /* border: 1px solid #f6701d; */
     border-radius: 3px;
 }
 .stack-to-book input:active {
@@ -507,6 +539,7 @@ footer {
     padding: 5px 15px;
     margin: 5px 5px 0 5px;
 }
+/* タグ削除確認画面 */
 .delete-confirm{
     display: flex;
     justify-content: center;
@@ -563,13 +596,13 @@ footer {
     margin-right: 5px;
 }
 .cancel-button {
-    color: #545454;
+    color: #545454 !important;
     background-color: #fff;
     border-radius: 3px;
     padding: 8px 15px;
     margin-left: 10px;
 }
-/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+/* 昇格確認画面 */
 .promoted-to-book {
     display: flex;
     justify-content: center;
