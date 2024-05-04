@@ -81,9 +81,8 @@ return [
 
     // 'locale' => env('APP_LOCALE', 'en'),
     'locale' => env('APP_LOCALE', 'ja'),
-
-    // 'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ja'),
+    // 設定したlocaleが使えなかった場合に使用する言語
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
     // 'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
     'faker_locale' => env('APP_FAKER_LOCALE', 'ja_JP'),

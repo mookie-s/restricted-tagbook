@@ -49,7 +49,7 @@
             </div>
             <div class="note-list-data">
                 <div class="note-list-headline">
-                    <div>{{ $note->created_at->isoFormat('YYYY/MM/DD (ddd)') }}</div>
+                    <div>{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}</div>
                     <div>🔖{{ $note->tag->tagname }}</div>
                 </div>
                 <div class="note-list-title">
@@ -69,7 +69,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h4 class="modal-title" id="myModalLabel">削除確認画面</h4> -->
-                    <p class="modal-title" id="myModalLabel">🔖{{ $note->tag->tagname }}</p>
+                    <p class="modal-title" id="myModalLabel">{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}🔖{{ $note->tag->tagname }}</p>
                 </div>
                 <div class="modal-body">
                     @if($note->image)

@@ -83,7 +83,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h4 class="modal-title" id="myModalLabel">削除確認画面</h4> -->
-                    <p class="modal-title" id="myModalLabel">🔖{{ $searched_note->tag->tagname }}</p>
+                    <p class="modal-title" id="myModalLabel">{{ $searched_note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}🔖{{ $searched_note->tag->tagname }}</p>
                 </div>
                 <div class="modal-body">
                     @if($searched_note->image)
