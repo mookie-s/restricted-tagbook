@@ -80,16 +80,17 @@ footer {
 .footer-nav {
     position: fixed;
     bottom: 0;
-    margin: 0;
+    margin-bottom: -6px;
     width: 768px;
     background-color: #737373;
+    border-radius: 8px;
     padding: 10px 0px 5px 0;
 }
 .footer-pen {
     position: absolute;
-    top: -30px;
+    top: -26px;
     left: 67px;
-    max-width: 9%;
+    max-width: 8%;
 }
 .footer-pen:hover {
     max-width: 9.5%;
@@ -102,7 +103,7 @@ footer {
     justify-content: space-between;
 }
 .footer-nav ul li a img {
-    max-width: 22%;
+    max-width: 20%;
 }
 .pagination {
     font-size: 10pt;
