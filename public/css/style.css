@@ -16,7 +16,7 @@ body {
     background-color: #545454 !important;
 }
 h2 {
-    font-size: 1.5rem;;
+    font-size: 1.25rem;;
 }
 a {
     color: #fff !important;
@@ -33,15 +33,18 @@ li {
 /* ■■■■■■■ header ■■■■■■■ */
 header {
     text-align: center;
+    line-height: 0%;
 }
-.header-nav ul {
+.header-nav {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    border-bottom: 1px solid #737373;
+    padding: 5px 20px 3px 20px;
+    margin-bottom: 10px;
 }
-.header-nav li {
-    line-height: 85%;
+.header-nav a {
+    line-height: 120%;
 }
 .account-icon {
     width: 30px;
@@ -141,45 +144,45 @@ footer {
     margin-top: 50px;
 }
 /* ■■■■■■■ home ■■■■■■■ */
-.tags-tab ul {
+.tags-link {
+    margin-bottom: 10px;
+}
+.tags-tab {
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 5px 10px;
+    padding: 0 10px;
+    margin-bottom: 5px;
 }
-.tags-tab ul li {
+.tags-tab a {
     width: 16%;
     text-align: center;
     border-radius: 3px;
-    padding: 3px 0;
-}
-.tags-tab ul li a {
+    padding: 2px 0;
     display: block;
 }
-.tags-tab ul li a:active {
-    background-color: #737373;
+.tags-tab a:active {
+    background: #737373;
     border-radius: 3px;
 }
-.mastered-tags-tab ul {
+.mastered-tags-tab {
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 5px 10px;
+    padding: 0 10px;
 }
-.mastered-tags-tab ul li {
-    width: 20%;
+.mastered-tags-tab a {
+    width: 16%;
     text-align: center;
     background: -moz-linear-gradient(65deg, #5170ff, #ff66c4);
     background: -webkit-linear-gradient(65deg, #5170ff, #ff66c4);
     background: linear-gradient(25deg right, #5170ff, #ff66c4);
     border-radius: 3px;
-    padding: 3px 0;
-}
-.mastered-tags-tab ul li a {
+    padding: 2px 0;
     display: block;
 }
-.mastered-tags-tab ul li a:active {
-    background-color: #737373;
+.mastered-tags-tab a:active {
+    background: #737373;
     border-radius: 3px;
 }
 .note-list {
@@ -188,11 +191,13 @@ footer {
     color: #545454;
     background-color: #f3fbff;
     border-radius: 3px;
+    padding-bottom: 3px;
     margin-bottom: 7px;
 }
 .note-list-image img {
-    width: 134px;
-    aspect-ratio: 1/1;
+    /* width: 103px; */
+    height: 105px;
+    aspect-ratio: 4/3;
     object-fit: cover;
     border-radius: 3px;
     margin: 5px 10px -3px 5px;
@@ -200,6 +205,9 @@ footer {
 .note-list-headline {
     display: flex;
     padding-top: 5px;
+}
+.note-list-headline div {
+    margin-right: 5px;
 }
 .note-list-title {
     font-weight: bold;
@@ -232,8 +240,6 @@ footer {
     color: #545454;
     background-color: #f3fbff;
     font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
-}
-.modal-content {
     letter-spacing: 1px;
 }
 .modal-body img {
@@ -250,7 +256,7 @@ footer {
     font-weight: bold;
 }
 .modal-detail p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: 5px;
     white-space: pre-wrap;
 }
@@ -397,12 +403,11 @@ footer {
     padding: 3px 15px;
 }
 .tag-form {
-    margin: 10px 0 0 5px;
+    margin: 30px 0 0 5px;
 }
 .create-tag {
     width: 11em;
     color: #545454;
-    /* font-weight: bold; */
     background-color: #fff;
     border-radius: 3px;
     padding: 3px 5px;
@@ -432,7 +437,7 @@ footer {
     width: 100%;
     border-collapse: separate;
     border-spacing: 5px;
-    margin: 10px 0 30px 0;
+    margin: 20px 0 50px 0;
 }
 .stack-table th {
     font-size: 0.85rem;

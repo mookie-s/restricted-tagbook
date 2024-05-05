@@ -20,8 +20,8 @@ class NoteController extends Controller
         $tags = Tag::where('user_id', $user_id)->get();
         $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
 
-        // TODO 以下、１タグ１日１投稿縛りの仕様による、
-        // 本日投稿済みタグ除外のためのアルゴリズム生成(もっと良い方法あるかも？)
+        // TODO 以下、１タグ１日１投稿縛り仕様による、
+        // 本日投稿済みタグ除外のためのアルゴリズム(もっと良い方法ある？)
         $today = Carbon::today();
         $today_notes = Note::whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
 

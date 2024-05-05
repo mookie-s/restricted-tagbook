@@ -8,20 +8,18 @@
     </x-slot:meta_description>
 
     <h2>ノート最新100</h2>
-    <div class="tags-tab">
-        <ul>
-            |<li><a href="/home">すべて</a></li>|
+    <div class="tags-link">
+        <div class="tags-tab">
+            |<a href="/home">すべて</a>|
             @foreach($tags as $tag)
-            <li><a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a></li>|
+            <a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a>|
             @endforeach
-        </ul>
-    </div>
-    <div class="mastered-tags-tab">
-        <ul>|
+        </div>
+        <div class="mastered-tags-tab">|
             @foreach($mastered_tags as $mastered_tag)
-            <li><a href="/home/{{ $mastered_tag->id }}">🔖{{ $mastered_tag->abbreviation }}</a></li>|
+            <a href="/home/{{ $mastered_tag->id }}">🔖{{ $mastered_tag->abbreviation }}</a>|
             @endforeach
-        </ul>
+        </div>
     </div>
     <p class="promoted-message">📝{{ $get_tag->tagname ?? 'すべて' }}</p>
     @if($tags->count() == 0)
@@ -53,10 +51,10 @@
                     <div>🔖{{ $note->tag->tagname }}</div>
                 </div>
                 <div class="note-list-title">
-                    <p>「 {{ $note->title }} 」</p>
+                    <div>「 {{ $note->title }} 」</div>
                 </div>
                 <div class="note-list-detail">
-                    <p>{{ Str::limit($note->story, '100', '...')}}</p>
+                    <div>{{ Str::limit($note->story, '100', '...')}}</div>
                 </div>
             </div>
             <button type="button" data-toggle="modal" data-target="#modal-screen<?= $i ?>" data-backdrop="true"></button>
@@ -69,7 +67,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h4 class="modal-title" id="myModalLabel">削除確認画面</h4> -->
-                    <p class="modal-title" id="myModalLabel">{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}🔖{{ $note->tag->tagname }}</p>
+                    <div class="modal-title" id="myModalLabel">{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}🔖{{ $note->tag->tagname }}</div>
                 </div>
                 <div class="modal-body">
                     @if($note->image)
