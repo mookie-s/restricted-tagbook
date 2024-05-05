@@ -90,9 +90,16 @@
             };
         });
     });
-    // textareaの文字数カウンター
-    function ShowLength( str ) {
-        document.getElementById("input-length").innerHTML = str.length + "/800文字";
+    // textareaの文字数をカウント（改行コード：LF、CR、CRLFをすべて2文字としてカウント）
+    function countGrapheme( str ) {
+        let str_step1 = str.replace(/\n/g, 'ああ');
+        let str_step2 = str_step1.replace(/\r/g, 'いい');
+        let str_all = str_step2.replace(/\r\n/g, 'うう');
+        const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
+        return [...segmenter.segment(str_all)].length;
+    }
+    function ShowLength(str) {
+        document.getElementById("input-length").innerHTML = countGrapheme(str) + "/800文字";
     }
     </script>
 </body>
