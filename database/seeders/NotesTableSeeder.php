@@ -13,6 +13,6 @@ class NotesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Note::factory(10)->create();
+        Note::factory(100)->create();
     }
 }

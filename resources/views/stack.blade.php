@@ -13,26 +13,44 @@
             <a class="first-note-button" href="/note">最初のノートを書く</a>
         </div>
         <div class="tag-form">
-            <p>タグを登録する</p>
+            <div>タグを登録する</div>
             <form action="/store-tag" method="post">
                 @csrf
-                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
-                <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名" value="{{ old('tagname') }}">
+                <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
                 <small>※タグ登録は５つまで</small>
             </form>
         </div>
+        @if($errors->any())
+            <div></div>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li><small class="delete-message" style="font-weight:bold">※ {{ $error }}</small></li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     @elseif($tags->count() < 5)
         <div class="tag-form">
-            <p>タグを登録する</p>
+            <div>タグを登録する</div>
             <form action="/store-tag" method="post">
                 @csrf
-                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名">
-                <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)">
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名" value="{{ old('tagname') }}">
+                <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
                 <small>※タグ登録は５つまで</small>
             </form>
         </div>
+        @if($errors->any())
+            <div></div>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li><small class="delete-message" style="font-weight:bold">※ {{ $error }}</small></li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     @endif
     @if($tags->count() != 0)
         <!-- @csrf -->
@@ -119,7 +137,7 @@
                         @endforeach
                         </td>
                     @elseif($promoted_note_count >= 900)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -133,7 +151,7 @@
                         </td>
                         <td>残り１冊</td>
                     @elseif($promoted_note_count >= 800)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -146,7 +164,7 @@
                         </td>
                         <td>残り２冊</td>
                     @elseif($promoted_note_count >= 700)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -158,7 +176,7 @@
                         </td>
                         <td>残り３冊</td>
                     @elseif($promoted_note_count >= 600)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -169,7 +187,7 @@
                         </td>
                         <td>残り４冊</td>
                     @elseif($promoted_note_count >= 500)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -179,7 +197,7 @@
                         </td>
                         <td>残り５冊</td>
                     @elseif($promoted_note_count >= 400)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -188,7 +206,7 @@
                         </td>
                         <td>残り６冊</td>
                     @elseif($promoted_note_count >= 300)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}">
@@ -196,14 +214,14 @@
                         </td>
                         <td>残り７冊</td>
                     @elseif($promoted_note_count >= 200)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}">
                             <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
                         </td>
                         <td>残り８冊</td>
                     @elseif($promoted_note_count >= 100)
-                        <td><a style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
+                        <td><a href="/search?tagname={{ $book->cover }}" style="background: #737373" tabindex="-1">📘{{ $book->cover }}</a></td>
                         <td>
                             <img src="{{ asset('/images/table-book.png') }}" alt="{{ $book->cover }}">
                         </td>
@@ -216,7 +234,7 @@
 
     @if($tags->count() != 0)
     <div class="stack-tag-delete">
-        <p>タグを削除する</p>
+        <div>タグを削除する</div>
         <form class="delete-tag-select" action="/delete-confirm" method="post">
             <select  name="delete_tag_id">
                     <!-- <option value="">▼ タグを選択</option> -->

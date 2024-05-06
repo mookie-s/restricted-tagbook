@@ -35,6 +35,15 @@
                     <small class="file__none">イメージが選択されていません</small>
                 </div>
             </div>
+            @if($errors->any())
+                <div></div>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li><small class="delete-message" style="font-weight:bold">※ {{ $error }}</small></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div>
                 <select class="note-tag-select" name="tag_id">
                     <option value="">▼ タグを選択</option>
@@ -57,7 +66,7 @@
                 @endif
             </div>
             <div class="note-story">
-                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
+                <textarea name="story" rows="30" placeholder="執筆内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
             </div>
             <p id="input-length">0/800文字</p>
             <div class="note-buttons">

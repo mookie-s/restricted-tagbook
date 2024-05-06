@@ -11,7 +11,11 @@ class TagPostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if ($this->path() == 'store-tag') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -22,8 +26,18 @@ class TagPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tagname' => 'required|min:1|max:10',
-            'abbreviation' => 'required|min:1|max:4',
+            'tagname' => 'required|between:1,10,',
+            'abbreviation' => 'required|between:1,4,',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'tagname.required' => 'タグ名 は入力必須です。',
+            'tagname.between' => 'タグ名 は 10 文字以内で入力してください。',
+            'abbreviation.required' => 'タグ略称 は入力必須です。',
+            'abbreviation.between' => 'タグ略称 は 4 文字以内で入力してください。',
         ];
     }
 }

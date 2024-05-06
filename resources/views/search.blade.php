@@ -67,10 +67,10 @@
                     <div>🔖{{ $searched_note->tag->tagname }}</div>
                 </div>
                 <div class="note-list-title">
-                    <p>「 {{ $searched_note->title }} 」</p>
+                    <div>「 {{ $searched_note->title }} 」</div>
                 </div>
                 <div class="note-list-detail">
-                    <p>{{ Str::limit($searched_note->story, '100', '...')}}</p>
+                    <div>{{ Str::limit($searched_note->story, '100', '...')}}</div>
                 </div>
                 <button type="button" data-toggle="modal" data-target="#modal-screen<?= $i ?>" data-backdrop="true"></button>
             </div>
@@ -83,7 +83,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h4 class="modal-title" id="myModalLabel">削除確認画面</h4> -->
-                    <p class="modal-title" id="myModalLabel">{{ $searched_note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}🔖{{ $searched_note->tag->tagname }}</p>
+                    <p class="modal-title" id="myModalLabel">{{ $searched_note->created_at->isoFormat('YYYY/MM/DD(ddd)') }} 🔖{{ $searched_note->tag->tagname }}</p>
                 </div>
                 <div class="modal-body">
                     @if($searched_note->image)

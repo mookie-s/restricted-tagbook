@@ -530,8 +530,6 @@ footer {
 }
 .stack-tag-delete {
     margin: 60px 0 100px 0;
-}
-.stack-tag-delete p {
     color: #f6701d;
 }
 .delete-tag-select select {
