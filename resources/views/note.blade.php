@@ -17,7 +17,8 @@
     <main class="wrapper">
         <h2>ノートの作成</h2>
         <div class="note-message">
-            <small class="promoted-message">※１タグにつき１日１投稿まで可能です</small>
+            <div><small class="promoted-message">※１タグにつき１日１投稿までです。</small></div>
+            <div><small class="promoted-message">※すでに本日投稿したタグや、中断保存分含めたノート数が100件かつブック化していないタグは選択できません。</small></div>
         </div>
         @if($tags->count() == 0)
         <div>
@@ -38,8 +39,8 @@
                 <select class="note-tag-select" name="tag_id">
                     <option value="">▼ タグを選択</option>
                     @foreach($tags as $tag)
-                        @foreach($unfinished_tag_ids as $unfinished_tag_id)
-                            @if($unfinished_tag_id == $tag->id)
+                        @foreach($selectable_tag_ids as $selectable_tag_id)
+                            @if($selectable_tag_id == $tag->id)
                                 <option value="{{ $tag->id }}"
                                 @if(old('tag_id') == $tag->id)
                                     selected

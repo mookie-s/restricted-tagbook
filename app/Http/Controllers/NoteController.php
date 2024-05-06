@@ -18,12 +18,36 @@ class NoteController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->get();
-        $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
+        $note_query = Note::query();
 
-        // TODO 以下、１タグ１日１投稿縛り仕様による、
-        // 本日投稿済みタグ除外のためのアルゴリズム(もっと良い方法ある？)
+        // TODO 以下、選択できるタグ名を制限するアルゴリズム（より良い組み方があるかも？）
+
+        // １）■■■start■■■ 中断保存分含めた未昇格ノートが100件ある（＝未ブック化）タグのid取得アルゴリズム
+        $un_promoted_notes = $note_query->where('user_id', $user_id)->where('promoted', 0)->get();
+        $un_promoted_notes_per_tags = [];
+        foreach ($tags as $tag) {
+                array_push($un_promoted_notes_per_tags, [$tag->id => $un_promoted_notes->where('tag_id', $tag->id)->count()]);
+        }
+
+        $array_mapping = [];
+        foreach ($un_promoted_notes_per_tags as $un_promoted_notes_per_tag) {
+            array_push($array_mapping, [
+                'tag_id' => array_keys($un_promoted_notes_per_tag)[0],
+                'notes_count_per_tag' => array_values($un_promoted_notes_per_tag)[0],
+            ]);
+        }
+
+        $notes100_tag_ids = [];
+        foreach ($array_mapping as $row) {
+            if ($row['notes_count_per_tag'] == 100) {
+                array_push($notes100_tag_ids, $row['tag_id']);
+            }
+        }
+        // ■■end■■（中断保存分含めた未昇格ノートが100件ある（＝未ブック化）タグのid取得アルゴリズム）
+
+        // ２）■■■start■■■ 本日分投稿済みノートがあるタグのid取得アルゴリズム
         $today = Carbon::today();
-        $today_notes = Note::whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
+        $today_notes = $note_query->where('user_id', $user_id)->whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
 
         $tag_ids = [];
         foreach ($tags as $tag) {
@@ -34,10 +58,16 @@ class NoteController extends Controller
         foreach ($today_notes as $today_note) {
             array_push($finished_tag_ids, $today_note->tag_id);
         }
+        // ■■■end■■■（本日分投稿済みノートがあるタグのid取得アルゴリズム）
 
+        // すべてのタグid からアルゴリズム１）と２）のタグid を除外
         $unfinished_tag_ids = array_diff($tag_ids, $finished_tag_ids);
+        $selectable_tag_ids = array_diff($unfinished_tag_ids, $notes100_tag_ids);
 
-        return view('/note', compact('tags', 'unfinished_tag_ids', 'break_note'));
+        // 中断保存ノートがある場合、そのノートを取得
+        $break_note = $note_query->where('user_id', $user_id)->where('break', 1)->first();
+
+        return view('/note', compact('tags', 'selectable_tag_ids', 'break_note'));
     }
 
     public function store(NotePostRequest $request): RedirectResponse
