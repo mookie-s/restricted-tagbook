@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();
-        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(5)->get();
+        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(6)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc')->take(100)->get();
 
         return view('/home', compact('tags', 'notes', 'mastered_tags'));
@@ -25,7 +25,7 @@ class HomeController extends Controller
         $user_id = Auth::id();
         $get_tag = Tag::where('user_id', $user_id)->find($tag_id);
         $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();
-        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(5)->get();
+        $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(6)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->where('tag_id', $tag_id)->orderBy('id', 'desc')->take(100)->get();
 
         return view('/home', compact('get_tag', 'tags', 'notes', 'mastered_tags'));

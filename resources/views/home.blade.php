@@ -15,11 +15,13 @@
             <a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a>|
             @endforeach
         </div>
+        @if($mastered_tags->count() > 0)
         <div class="mastered-tags-tab">|
             @foreach($mastered_tags as $mastered_tag)
             <a href="/home/{{ $mastered_tag->id }}">🔖{{ $mastered_tag->abbreviation }}</a>|
             @endforeach
         </div>
+        @endif
     </div>
     <p class="promoted-message">📝{{ $get_tag->tagname ?? 'すべて' }}</p>
     @if($tags->count() == 0)
@@ -30,6 +32,12 @@
         <div>
             <a class="first-note-button" href="/note">最初のノートを書く</a>
         </div>
+    @endif
+    @if(session('new_note_message'))
+        <small><div class="alert alert-primary mx-auto">！{{session('new_note_message')}}</div></small>
+    @endif
+    @if(session('break_note_message'))
+        <small><div class="alert alert-light mx-auto">！{{session('break_note_message')}}</div></small>
     @endif
 
     <!-- この$iはモーダルに各ノート内容を表示するために使用 -->

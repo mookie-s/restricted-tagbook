@@ -185,6 +185,7 @@ footer {
     justify-content: left;
     align-items: center;
     padding: 0 10px;
+    margin-bottom: 5px;
 }
 .mastered-tags-tab a {
     width: 16%;

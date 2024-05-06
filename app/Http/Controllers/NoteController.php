@@ -18,6 +18,7 @@ class NoteController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->get();
+        $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
         $note_query = Note::query();
 
         // TODO 以下、選択できるタグ名を制限するアルゴリズム（より良い組み方があるかも？）
@@ -64,9 +65,6 @@ class NoteController extends Controller
         $unfinished_tag_ids = array_diff($tag_ids, $finished_tag_ids);
         $selectable_tag_ids = array_diff($unfinished_tag_ids, $notes100_tag_ids);
 
-        // 中断保存ノートがある場合、そのノートを取得
-        $break_note = $note_query->where('user_id', $user_id)->where('break', 1)->first();
-
         return view('/note', compact('tags', 'selectable_tag_ids', 'break_note'));
     }
 
@@ -90,8 +88,14 @@ class NoteController extends Controller
         }
         $note->title = $request->title;
         $note->story = $request->story;
+
+        $break_note_message = '';
+        $new_note_message = '';
         if ($request->has('to_break')) {
             $note->break = 1;
+            $break_note_message = 'ノートを中断保存しました';
+        } else {
+            $new_note_message = 'ノートを執筆しました';
         }
         // 該当タグがすでに達人達成している場合は作成ノートを最初から昇格させる
         if ($tag->mastered == 1) {
@@ -99,6 +103,6 @@ class NoteController extends Controller
         }
         $note->save();
 
-        return redirect('/home');
+        return redirect('/home')->with('new_note_message', $new_note_message)->with('break_note_message', $break_note_message);
     }
 }

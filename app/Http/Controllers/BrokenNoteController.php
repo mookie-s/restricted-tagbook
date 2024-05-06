@@ -32,13 +32,18 @@ class BrokenNoteController extends Controller
         }
         $broken_note->title = $request->title;
         $broken_note->story = $request->story;
+
+        $break_note_message = '';
+        $new_note_message = '';
         if ($request->has('to_break')) {
             $broken_note->break = 1;
+            $break_note_message = 'ノートを中断保存しました';
         } else {
             $broken_note->break = 0;
+            $new_note_message = 'ノートを執筆しました';
         }
         $broken_note->save();
 
-        return redirect('/home');
+        return redirect('/home')->with('new_note_message', $new_note_message)->with('break_note_message', $break_note_message);
     }
 }
