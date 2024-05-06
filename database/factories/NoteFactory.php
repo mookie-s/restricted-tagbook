@@ -18,7 +18,7 @@ class NoteFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'tag_id' => 5,
+            'tag_id' => 31,
             'title' => fake()->word(),
             'story' => fake()->paragraphs(3, true),
         ];

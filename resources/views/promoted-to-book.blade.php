@@ -20,7 +20,7 @@
                 <h2>ブックへの昇格</h2>
                 <div class="promoted-tagname">
                     <p><small class="promoted-message">「 {{ $tag->abbreviation }} 」100日達成おめでとうございます！</small></P>
-                    <p><small class="promoted-message">これからも習慣を継続させてどんどん突き抜けていきましょう！</small></P>
+                    <p><small class="promoted-message">これからも活動を継続させてどんどん突き抜けていきましょう！</small></P>
                     <p>タグ名： 🔖{{ $tag->tagname }}</p>
                     <p>略称： {{ $tag->abbreviation }}</p>
                     <p>ノート数： {{ $notes->count() }}</p>

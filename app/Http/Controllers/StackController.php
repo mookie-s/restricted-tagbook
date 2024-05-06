@@ -37,7 +37,7 @@ class StackController extends Controller
         $tag->abbreviation = $request->abbreviation;
         $tag->save();
 
-        return redirect('/stack');
+        return redirect('/stack')->with('new_tag_message', 'タグを作成しました');
     }
 
     public function promoted_to_book(Request $request): View
@@ -80,6 +80,8 @@ class StackController extends Controller
         $notes = Note::where('user_id', $user_id)->where('tag_id', $tag_id)->where('promoted', 0)->orderBy('id', 'desc')->get();
 
         // 今回達人達成か、それ以外（まだ未達成or過去に達成済み）で分岐
+        $new_mastered_tagname = '';
+        $new_mastered_message = '';
         if ($promoted_notes_count == 900) {
             // 現時点での昇格ノートが900件の場合は今回でタグが達人達成なので、
             // 今回昇格のノートにbook_idの紐づけ＆promoted=1を付与し、
@@ -92,6 +94,9 @@ class StackController extends Controller
             $tag = Tag::where('user_id', $user_id)->find($tag_id);
             $tag->mastered = 1;
             $tag->save();
+
+            $new_mastered_tagname = $tag->tagname;
+            $new_mastered_message = '達人に到達しました！';
         } else {
             // それ以外は今回昇格のノートにbook_idの紐づけ＆
             // 昇格フラグpromoted=1のみを付与
@@ -102,7 +107,7 @@ class StackController extends Controller
             }
         }
 
-        return redirect('/stack');
+        return redirect('/stack')->with('new_book_message', 'ブックが追加されました')->with('new_mastered_message', $new_mastered_message)->with('new_mastered_tagname', $new_mastered_tagname);
     }
 
     public function delete_confirm(Request $request): View
@@ -122,6 +127,6 @@ class StackController extends Controller
         $destroy_tag = Tag::where('user_id', $user_id)->find($destroy_tag_id);
         $destroy_tag->delete();
 
-        return redirect('/stack');
+        return redirect('/stack')->with('delete_tag_message', 'タグと紐づけノートを削除しました');
     }
 }

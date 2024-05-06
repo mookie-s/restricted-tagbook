@@ -8,6 +8,21 @@
     </x-slot:meta_description>
 
     <h2>積み上げ</h2>
+    <!-- フラッシュメッセージここから -->
+    @if(session('new_tag_message'))
+        <small><div class="alert alert-success mx-auto">！{{session('new_tag_message')}}</div></small>
+    @endif
+    @if(session('delete_tag_message'))
+        <small><div class="alert alert-danger mx-auto">！{{session('delete_tag_message')}}</div></small>
+    @endif
+    @if(session('new_book_message'))
+        <small><div class="alert alert-success mx-auto">🎉 {{session('new_book_message')}} 🎉</div></small>
+    @endif
+    @if(session('new_mastered_message'))
+        <small><div class="alert alert-warning mx-auto"><b>🎉🎉🎉 {{ session('new_mastered_tagname') }} が {{ session('new_mastered_message') }} 🎉🎉🎉</b></div></small>
+    @endif
+    <!-- フラッシュメッセージここまで -->
+
     @if($tags->count() != 0 && $notes->count() == 0)
         <div>
             <a class="first-note-button" href="/note">最初のノートを書く</a>

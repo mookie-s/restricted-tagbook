@@ -30,6 +30,21 @@ li {
     margin: 0 auto;
     background-color: #545454;
 }
+.alert {
+    width: 85%;
+    height: 30px;
+    text-align: center;
+    padding: 5px 0;
+    animation: fadeOut 3s ease-in 5s 1 normal forwards;
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 /* ■■■■■■■ header ■■■■■■■ */
 header {
     text-align: center;
