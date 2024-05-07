@@ -12,6 +12,9 @@
     @if(session('new_tag_message'))
         <small><div class="alert alert-success mx-auto">！{{session('new_tag_message')}}</div></small>
     @endif
+    @if(session('change_tag_message'))
+        <small><div class="alert alert-secondary mx-auto">！{{session('change_tag_message')}}</div></small>
+    @endif
     @if(session('delete_tag_message'))
         <small><div class="alert alert-danger mx-auto">！{{session('delete_tag_message')}}</div></small>
     @endif
@@ -31,7 +34,7 @@
             <div>タグを登録する</div>
             <form action="/store-tag" method="post">
                 @csrf
-                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名" value="{{ old('tagname') }}">
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名(10文字以内)" value="{{ old('tagname') }}">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
                 <small>※タグ登録は５つまで</small>
@@ -51,7 +54,7 @@
             <div>タグを登録する</div>
             <form action="/store-tag" method="post">
                 @csrf
-                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名" value="{{ old('tagname') }}">
+                <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名(10字以内)" value="{{ old('tagname') }}">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
                 <small>※タグ登録は５つまで</small>
@@ -248,17 +251,31 @@
     </table>
 
     @if($tags->count() != 0)
+    <div class="stack-tagname-change">
+        <div>タグ名を変更する</div>
+        <form class="change-tag-select" action="/change-confirm" method="post">
+            @csrf
+            <select  name="change_tag_id">
+                    <!-- <option value="">▼ タグを選択</option> -->
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
+                @endforeach
+            </select>
+            タグの名称を<input type="submit" value="！変更する" />
+        </form>
+    </div>
+
     <div class="stack-tag-delete">
         <div>タグを削除する</div>
         <form class="delete-tag-select" action="/delete-confirm" method="post">
+            @csrf
             <select  name="delete_tag_id">
                     <!-- <option value="">▼ タグを選択</option> -->
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
                 @endforeach
             </select>
-            @csrf
-            <input type="submit" value="！削除確認" />
+            タグと紐づけノートを<input type="submit" value="！削除する" />
         </form>
     </div>
     @endif

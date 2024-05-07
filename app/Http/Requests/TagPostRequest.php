@@ -13,6 +13,8 @@ class TagPostRequest extends FormRequest
     {
         if ($this->path() == 'store-tag') {
             return true;
+        } elseif ($this->path() == 'update') {
+            return true;
         } else {
             return false;
         }

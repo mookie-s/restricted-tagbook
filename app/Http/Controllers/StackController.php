@@ -110,6 +110,39 @@ class StackController extends Controller
         return redirect('/stack')->with('new_book_message', 'ブックが追加されました')->with('new_mastered_message', $new_mastered_message)->with('new_mastered_tagname', $new_mastered_tagname);
     }
 
+    public function change_confirm(Request $request): View
+    {
+        $user_id = Auth::id();
+        $change_tag_id = $request->change_tag_id;
+        $change_tag = Tag::where('user_id', $user_id)->find($change_tag_id);
+        $notes = Note::where('user_id', $user_id)->where('tag_id', $change_tag_id)->where('promoted', 0)->orderBY('id', 'desc')->get();
+
+        \Log::debug('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+        \Log::debug($request);
+
+        return view('/change-confirm', compact('change_tag', 'notes'));
+    }
+
+    // public function update(TagPostRequest $request): RedirectResponse
+    public function update(TagPostRequest $request)
+    {
+        $user_id = Auth::id();
+        $current_tag_id = $request->current_tag_id;
+        $current_tagname = $request->current_tagname;
+
+        $update_tag = Tag::where('user_id', $user_id)->find($current_tag_id);
+        $update_tag->tagname = $request->tagname;
+        $update_tag->abbreviation = $request->abbreviation;
+        $update_tag->save();
+
+        $change_tag_message = "タグ名「🔖{$current_tagname}」が「🔖{$update_tag->tagname}」に変更されました";
+
+        \Log::debug('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+        \Log::debug($request);
+
+        // return redirect('/stack')->with('change_tag_message', $change_tag_message);
+    }
+
     public function delete_confirm(Request $request): View
     {
         $user_id = Auth::id();
