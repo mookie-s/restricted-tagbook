@@ -18,19 +18,20 @@
         <div class="change-confirm">
             <div>
                 <h2>タグ名の変更</h2>
-                <small class="change-message">以下のタグ名と関連ノートの紐づけが変更されます。</small>
-                @if($errors->any())
-                    <div></div>
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li><small class="delete-message" style="font-weight:bold">※ {{ $error }}</small></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <small class="change-message">以下のタグ名と関連ノートの紐づけが変更されます。<br>すでに昇格化された同名ブック名とノートの紐づけは変更されません。</small>
                 <div class="change-tagname">
-                    <p>タグ名： 🔖{{ $change_tag->tagname }}</p>
-                    <p>略称：{{ $change_tag->abbreviation }}</p>
+                    <div>
+                    @if($errors->any())
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li><small class="delete-message" style="font-weight:bold">※ {{ $error }}</small></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    </div>
+                    <p>変更前のタグ名： 🔖{{ $before_tag->tagname }}</p>
+                    <p>変更前の略称：{{ $before_tag->abbreviation }}</p>
                     <p>ノート数： {{ $notes->count() }}</p>
                 </div>
                 @if($notes->count() != 0)
@@ -44,16 +45,14 @@
                 </div>
                 @endif
                 <!-- <hr> -->
-                <p>現在のタグ名： 🔖{{ $change_tag->tagname }}</p>
-                    <p>現在の略称：{{ $change_tag->abbreviation }}</p>
-                    <p>　↓↓</p>
-                <form action="/update" method="post">
+                <p>変更後のタグ名： 🔖{{ $after_tagname }}</p>
+                <p>変更後の略称：{{ $after_abbreviation }}</p>
+                <form id="form" action="/update" method="post">
                     @csrf
-                    <input type="hidden" name="current_tag_id" value="{{ $change_tag->id }}">
-                    <input type="hidden" name="current_tagname" value="{{ $change_tag->tagname }}">
-                    <p>新しいタグ名：🔖<input class="change-tag" type="text" name="tagname" placeholder="10文字以内" value="{{ old('tagname') }}"></p>
-                    <p>新しい略称：<input class="change-tag-abbreviation" type="text" name="abbreviation" placeholder="4文字以内" value="{{ old('abbreviation') }}"></p>
-                    <small class="change-message">タグ名変更にともない、関連ノートも新しいタグに紐づけ変更されます。<br>ブック化されているブック名と昇格済みノートの紐づけは変更されません。</small>
+                    <input type="hidden" name="before_tag_id" value="{{ $before_tag->id }}">
+                    <input type="hidden" name="before_tagname" value="{{ $before_tag->tagname }}">
+                    <input type="hidden" name="after_tagname" value="{{ $after_tagname }}">
+                    <input type="hidden" name="after_abbreviation" value="{{ $after_abbreviation }}">
                     <div class="change-confirm-buttons">
                         <input class="change-submit-button" type="submit" value="！タグ名を変更">
                         <a class="cancel-button" href="/stack">キャンセル</a>

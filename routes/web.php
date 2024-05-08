@@ -47,7 +47,6 @@ Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
 Route::post('store-tag', [StackController::class, 'store_tag']);
 Route::post('/promoted-to-book', [StackController::class, 'promoted_to_book'])->middleware('auth');
 Route::post('store-book', [StackController::class, 'store_book']);
-Route::get('/change-confirm', [StackController::class, 'change_confirm'])->middleware('auth');
 Route::post('/change-confirm', [StackController::class, 'change_confirm'])->middleware('auth');
 Route::post('update', [StackController::class, 'update']);
 Route::post('/delete-confirm', [StackController::class, 'delete_confirm'])->middleware('auth');

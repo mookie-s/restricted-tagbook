@@ -553,27 +553,31 @@ footer {
     background-color: #737373;
     border-radius: 3px;
     padding: 5px 10px 5px 5px;
-    margin: 5px 0 0 5px;
+    margin: 5px 0;
 }
 .change-tag-select input {
-    border: 1px solid #ffde59;
+    color: #545454;
+    background: #fff;
+    border-radius: 3px;
+    padding: 5px 5px !important;
+    margin: 5px 0 0 0;
 }
-.change-tag {
+.change-tag-select input::placeholder {
+    color: #adadad;
+}
+/* .change-tag {
     width: 12em;
     color: #545454;
     background: #fff;
     border-radius: 3px;
     padding: 5px 5px;
     margin: 5px 0;
+} */
+.change-tag-tagname {
+    width: 12em;
 }
 .change-tag-abbreviation {
     width: 7em;
-    /* max-width: 100%; */
-    color: #545454;
-    background-color: #fff;
-    border-radius: 3px;
-    padding: 5px 5px !important;
-    margin: 5px 0 ;
 }
 .stack-tag-delete {
     margin: 50px 0 100px 0;
@@ -636,9 +640,19 @@ footer {
     padding: 5px 15px;
     margin: 5px 5px 0 5px;
 }
+#change_button {
+    color: #ffde59;
+    background-color: #737373;
+    border: 1px solid #ffde59;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 5px;
+    opacity: 0.3;
+}
 .change-submit-button {
     color: #ffde59;
     background-color: #737373;
+    border: 1px solid #ffde59;
     border-radius: 3px;
     padding: 8px 15px;
     margin-right: 5px;

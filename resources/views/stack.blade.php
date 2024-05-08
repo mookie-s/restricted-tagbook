@@ -253,15 +253,15 @@
     @if($tags->count() != 0)
     <div class="stack-tagname-change">
         <div>タグ名を変更する</div>
-        <form class="change-tag-select" action="/change-confirm" method="post">
+        <form id="change_form" class="change-tag-select" action="/change-confirm" method="post">
             @csrf
-            <select  name="change_tag_id">
+            <select  name="before_tag_id">
                     <!-- <option value="">▼ タグを選択</option> -->
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
                 @endforeach
             </select>
-            タグの名称を<input type="submit" value="！変更する" />
+            タグを🔖<input id="change_tagname" class="change-tag-tagname" type="text" name="after_tagname" placeholder="タグ名(10字以内)" value="{{ old('after_tagname') }}" maxlength="10" required><input id="change_abbreviation" class="change-tag-abbreviation" type="text" name="after_abbreviation" placeholder="略称(4字以内)" value="{{ old('after_abbreviation') }}" maxlength="4" required>に<input id="change_button" type="submit" value="変更する" disabled>
         </form>
     </div>
 
@@ -275,8 +275,29 @@
                     <option value="{{ $tag->id }}">🔖{{ $tag->tagname }}</option>
                 @endforeach
             </select>
-            タグと紐づけノートを<input type="submit" value="！削除する" />
+            タグと紐づけノートを<input type="submit" value="削除する" />
         </form>
     </div>
     @endif
+    <script>
+        // タグ名変更
+        const change_form = document.getElementById("change_form");
+        const change_tagname = document.getElementById("change_tagname");
+        const change_abbreviation = document.getElementById("change_abbreviation");
+        const change_button = document.getElementById("change_button");
+
+        change_form.addEventListener("input", update);
+        function update() {
+            const isRequired = change_form.checkValidity();
+            let count_tagname = change_tagname.value.length;
+            let count_abbreviation = change_abbreviation.value.length;
+
+            if (isRequired && count_tagname <= 10 && count_abbreviation <= 4) {
+                change_button.disabled = false;
+                change_button.style.opacity = 1;
+                change_button.style.cursor = "pointer";
+                return;
+            }
+        }
+    </script>
 </x-layouts.base-layout>

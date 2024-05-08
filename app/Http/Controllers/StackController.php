@@ -113,34 +113,30 @@ class StackController extends Controller
     public function change_confirm(Request $request): View
     {
         $user_id = Auth::id();
-        $change_tag_id = $request->change_tag_id;
-        $change_tag = Tag::where('user_id', $user_id)->find($change_tag_id);
-        $notes = Note::where('user_id', $user_id)->where('tag_id', $change_tag_id)->where('promoted', 0)->orderBY('id', 'desc')->get();
+        $before_tag_id = $request->before_tag_id;
+        $before_tag = Tag::where('user_id', $user_id)->find($before_tag_id);
+        $notes = Note::where('user_id', $user_id)->where('tag_id', $before_tag_id)->where('promoted', 0)->orderBY('id', 'desc')->get();
 
-        \Log::debug('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-        \Log::debug($request);
+        $after_tagname = $request->after_tagname;
+        $after_abbreviation = $request->after_abbreviation;
 
-        return view('/change-confirm', compact('change_tag', 'notes'));
+        return view('/change-confirm', compact('before_tag', 'notes', 'after_tagname', 'after_abbreviation'));
     }
 
-    // public function update(TagPostRequest $request): RedirectResponse
-    public function update(TagPostRequest $request)
+    public function update(Request $request): RedirectResponse
     {
         $user_id = Auth::id();
-        $current_tag_id = $request->current_tag_id;
-        $current_tagname = $request->current_tagname;
+        $update_tag_id = $request->before_tag_id;
+        $before_tagname = $request->before_tagname;
 
-        $update_tag = Tag::where('user_id', $user_id)->find($current_tag_id);
-        $update_tag->tagname = $request->tagname;
-        $update_tag->abbreviation = $request->abbreviation;
+        $update_tag = Tag::where('user_id', $user_id)->find($update_tag_id);
+        $update_tag->tagname = $request->after_tagname;
+        $update_tag->abbreviation = $request->after_abbreviation;
         $update_tag->save();
 
-        $change_tag_message = "タグ名「🔖{$current_tagname}」が「🔖{$update_tag->tagname}」に変更されました";
+        $change_tag_message = "「🔖{$before_tagname}」タグの名称が「🔖{$update_tag->tagname}」に変更されました";
 
-        \Log::debug('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-        \Log::debug($request);
-
-        // return redirect('/stack')->with('change_tag_message', $change_tag_message);
+        return redirect('/stack')->with('change_tag_message', $change_tag_message);
     }
 
     public function delete_confirm(Request $request): View
