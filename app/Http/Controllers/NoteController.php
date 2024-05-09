@@ -18,13 +18,13 @@ class NoteController extends Controller
     {
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)->get();
+
+        // 中断ノート
         $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
-        $note_query = Note::query();
 
         // TODO 以下、選択できるタグ名を制限するアルゴリズム（より良い組み方があるかも？）
-
         // １）■■■start■■■ 中断保存分含めた未昇格ノートが100件ある（＝未ブック化）タグのid取得アルゴリズム
-        $un_promoted_notes = $note_query->where('user_id', $user_id)->where('promoted', 0)->get();
+        $un_promoted_notes = Note::where('user_id', $user_id)->where('promoted', 0)->get();
         $un_promoted_notes_per_tags = [];
         foreach ($tags as $tag) {
                 array_push($un_promoted_notes_per_tags, [$tag->id => $un_promoted_notes->where('tag_id', $tag->id)->count()]);
@@ -48,7 +48,7 @@ class NoteController extends Controller
 
         // ２）■■■start■■■ 本日分投稿済みノートがあるタグのid取得アルゴリズム
         $today = Carbon::today();
-        $today_notes = $note_query->where('user_id', $user_id)->whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
+        $today_notes = Note::where('user_id', $user_id)->whereDate('created_at', $today)->orderBy('tag_id', 'asc')->get();
 
         $tag_ids = [];
         foreach ($tags as $tag) {
