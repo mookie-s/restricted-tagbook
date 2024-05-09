@@ -3,10 +3,30 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <!-- Logoデフォルト -->
+                <!-- <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    </a>
+                </div> -->
+                <style>
+                    .dashboard-icon a img {
+                        width: 190px;
+                        background: #545454;
+                        border-radius: 5px;
+                        padding: 5px 15px;
+                        margin: 10px;
+                    }
+                    .dashboard-icon a img:hover {
+                        background: #737373;
+                    }
+                    .dashboard-icon a img:active {
+                        background: #39b6ff;
+                    }
+                </style>
+                <div class="dashboard-icon">
+                    <a href="/home">
+                        <img class="" src="{{ asset('/images/app-logo.png') }}" alt="アプリロゴ" />
                     </a>
                 </div>
 

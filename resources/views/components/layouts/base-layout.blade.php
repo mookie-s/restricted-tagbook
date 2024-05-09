@@ -17,8 +17,11 @@
 <body>
     <header class="wrapper">
         <nav class="header-nav">
-            <!-- TODO nav画像はログイン状態によってif分岐させる -->
-            <a href="/register"><img class="account-icon" src="{{ asset('/images/logout.png') }}" alt="ログアウト中"></a>
+            @if(Auth::id())
+                <a href="/login"><img class="account-icon" src="{{ asset('/images/login.png') }}" alt="ログアウト中"></a>
+            @else
+                <a href="/login"><img class="account-icon" src="{{ asset('/images/logout.png') }}" alt="ログアウト中"></a>
+            @endif
             <h1><img class="app-logo" src="{{ asset('/images/app-logo.png') }}" alt="ロゴ"></h1>
             <a class="copyright" href="#">&copy; 2024<br> Mookie</a>
         </nav>
