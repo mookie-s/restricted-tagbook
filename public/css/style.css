@@ -810,6 +810,32 @@ footer {
     padding: 8px 15px;
     margin-left: 10px;
 }
+/* ■■■■■■■ help ■■■■■■■ */
+.help-links p a:hover {
+    border-bottom: 1px solid #fff;
+}
+/* ■■■■■■■ privacy ■■■■■■■ */
+.privacy {
+    text-align: center;
+}
+.privacy-table {
+    background-color: #545454;
+}
+.privacy-table th {
+    border: 1px solid #737373;
+    text-align: center;
+    padding: 5px 5px;
+}
+.privacy-table td {
+    border: 1px solid #737373;
+    padding: 5px 5px;
+}
+.first-td {
+    width: 19%;
+}
+.second-td {
+    width: 39%;
+}
 
 /* モバイル表示
 -------------------------- */
