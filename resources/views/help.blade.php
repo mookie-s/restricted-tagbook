@@ -10,7 +10,7 @@
     <h2>制限タグ帳について</h2>
     <!-- TODO -->
     <div class="help-links">
-    <p class="help-terms">・<a href="#">利用規約</a></p>
+    <p class="help-terms">・<a href="/terms">利用規約</a></p>
     <p class="help-privacy">・<a href="/privacy">プライバシーポリシー</a></p>
     <p class="help-contact">・<a href="#">お問い合わせ</a></p>
     </div>

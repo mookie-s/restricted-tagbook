@@ -814,29 +814,87 @@ footer {
 .help-links p a:hover {
     border-bottom: 1px solid #fff;
 }
+/* ■■■■■■■ terms ■■■■■■■ */
+.terms h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+.terms p {
+    text-indent: 1rem;
+}
+.terms table {
+    border: 1px solid #737373;
+}
+.terms table td {
+    border: 1px solid #737373;
+    text-align: left;
+    padding: 5px 5px;
+}
+.terms ol {
+    text-indent: 1rem;
+}
+.terms ol li {
+    margin: 0 0 10px 30px;
+    list-style-type: decimal;
+}
+.terms ul {
+    margin-left: 20px;
+    text-indent: 1rem;
+}
+.terms ul li {
+    list-style-type: lower-roman;
+    margin-bottom: 5px;
+}
+.terms-no7 li {
+    margin-left: 30px;
+}
+.terms-first-td {
+    width: 23%;
+}
+.terms p a:hover {
+    border-bottom: 1px solid #fff;
+}
 /* ■■■■■■■ privacy ■■■■■■■ */
-.privacy {
+.privacy h4 {
     text-align: center;
+    margin-top: 20px;
 }
-.privacy-table {
+.privacy p {
+    text-indent: 1rem;
+}
+.privacy table {
     background-color: #545454;
+    border: 1px solid #737373;
 }
-.privacy-table th {
+.privacy table th {
     border: 1px solid #737373;
     text-align: center;
+    font-weight: normal;
     padding: 5px 5px;
 }
-.privacy-table td {
+.privacy table td {
     border: 1px solid #737373;
     padding: 5px 5px;
 }
-.first-td {
+.privacy ul li {
+    margin-left: 5px;
+}
+.privacy ol {
+    margin-left: 1rem;
+}
+.privacy ol li {
+    list-style-type: disc;
+    margin: 0 0 5px 30px;
+}
+.privacy-first-td {
     width: 19%;
 }
-.second-td {
+.privacy-second-td {
     width: 39%;
 }
-
+.privacy p a:hover {
+    border-bottom: 1px solid #fff;
+}
 /* モバイル表示
 -------------------------- */
 @media (max-width: 450px) {
