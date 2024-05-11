@@ -71,7 +71,7 @@
             <p id="input-length">0/800文字</p>
             <div class="note-buttons">
                 <div>
-                    <input class="note-submit-button" type="submit" value="完成">
+                    <input class="note-submit-button" type="submit" value="投稿">
                     @if(empty($break_note))
                     <input class="note-break-button" type="submit" name="to_break" value="中断保存"><small>＊中断ノート再開時、イメージは再選択となります。</small>
                     @endif

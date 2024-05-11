@@ -823,7 +823,31 @@ footer {
 }
 .how-to-use h3 {
     font-size: 1.125rem;
-    text-indent: 10px;
+    color: #39b6ff;
+}
+.how-to-use h4 {
+    font-size: 1rem;
+    text-indent: 1rem;
+}
+.how-to-use p {
+    text-indent: 1rem;
+}
+.how-to-use li {
+    list-style-type: disc;
+    margin-left: 3rem;
+    margin-bottom: 3px;
+}
+.help-pen-icon {
+    width: 4% !important;
+}
+.help-stack-icon {
+    width: 4% !important;
+}
+.how-to-use img {
+    width: 3%;
+}
+.emphasis {
+    color: #f6701d;
 }
 /* ■■■■■■■ terms ■■■■■■■ */
 .terms h4 {
