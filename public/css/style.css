@@ -811,8 +811,19 @@ footer {
     margin-left: 10px;
 }
 /* ■■■■■■■ help ■■■■■■■ */
-.help-links p a:hover {
+.help-links-ul {
+    margin-left: 1rem;
+}
+.help-links ul li {
+    list-style-type: disc;
+    margin: 0 0 5px 30px;
+}
+.help-links ul li a:hover {
     border-bottom: 1px solid #fff;
+}
+.how-to-use h3 {
+    font-size: 1.125rem;
+    text-indent: 10px;
 }
 /* ■■■■■■■ terms ■■■■■■■ */
 .terms h4 {

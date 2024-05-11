@@ -10,11 +10,15 @@
     <h2>アプリのご利用にあたって</h2>
     <!-- TODO -->
     <div class="help-links">
-        <p class="help-terms">・<a href="/terms">利用規約</a></p>
-        <p class="help-privacy">・<a href="/privacy">プライバシーポリシー</a></p>
-        <p class="help-contact">・<a href="#">お問い合わせ（準備中...当社サイト内予定）</a></p>
+        <ul>
+            <li><a href="/terms">利用規約</a></li>
+            <li><a href="/privacy">プライバシーポリシー</a></li>
+            <li><a href="#">お問い合わせ（準備中...当社サイト内予定）</a></li>
+        </ul>
     </div>
     <br>
-    <h5>アプリの使い方</h5>
-    <p>段落２（本文）</p>
+    <h2>制限タグ帳の使い方</h2>
+    <div class="how-to-use">
+        <h3>アプリの概要</h3>
+    </div>
 </x-layouts.base-layout>
