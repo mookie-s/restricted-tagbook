@@ -18,9 +18,9 @@
         <div class="promoted-to-book">
             <div>
                 <h2>ブックへの昇格</h2>
+                <p><small class="promoted-message">「 {{ $tag->abbreviation }} 」100日達成おめでとうございます！</small></P>
+                <p><small class="promoted-message">これからも活動を継続させてどんどん突き抜けていきましょう！</small></P>
                 <div class="promoted-tagname">
-                    <p><small class="promoted-message">「 {{ $tag->abbreviation }} 」100日達成おめでとうございます！</small></P>
-                    <p><small class="promoted-message">これからも活動を継続させてどんどん突き抜けていきましょう！</small></P>
                     <p>タグ名： 🔖{{ $tag->tagname }}</p>
                     <p>略称： {{ $tag->abbreviation }}</p>
                     <p>ノート数： {{ $notes->count() }}</p>
@@ -43,7 +43,7 @@
                             <p>上記のノートが、<br>新規ブック「📘{{ $tag->tagname }}」へ昇格されます。</p>
                         @endif
                     </div>
-                    <p class="promoted-message"><small>※同名ブックがすでに存在するにもかかわらず新規ブックへの昇格となる場合は、<br>タグ名が正しくない恐れがあります。下記のキャンセルからページを戻り、<br>正しいタグ名に修正してから再度ブック化してください。</small></p>
+                    <p class="promoted-message"><small>※同名ブックがすでに存在するにもかかわらず新規ブックへの昇格となる<br>場合は、タグ名が正しくない恐れがあります。下記のキャンセルからページ<br>を戻り、正しいタグ名に修正してから再度ブック化してください。</small></p>
                     <div class="promoted-confirm-buttons">
                         @csrf
                         <input type="hidden" name="same_cover_book_id" value="{{ $same_cover_book->id ?? '' }}">

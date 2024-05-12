@@ -80,7 +80,7 @@
                 @foreach ($tags as $tag)
                 <tr>
                     <td>
-                        <a style="background: #737373" href="/home/{{ $tag->id }}" tabindex="-1">🔖{{ $tag->tagname }}</a>
+                        <a style="background: #737373" href="/home/{{ $tag->id }}" tabindex="-1">🔖{{ $tag->abbreviation }}</a>
                     </td>
                     @php
                         $count = 0;
@@ -140,7 +140,7 @@
                         <td>
                         @foreach($mastered_tags as $mastered_tag)
                             @if($mastered_tag->tagname == $book->cover)
-                                <div tabindex="-1">達人の {{ $mastered_tag->abbreviation }}</div>
+                                <div tabindex="-1">達人の{{ $mastered_tag->abbreviation }}</div>
                             @endif
                         @endforeach
                         </td>
