@@ -37,7 +37,7 @@
                 <li><a href="/note"><img src="{{ asset('/images/pen-ellipse.png') }}" alt="ペンサークル" /></a></li>
                 <li><a href="/search"><img src="{{ asset('/images/search-icon.png') }}" alt="ノート検索" /></a></li>
                 <li><a href="/home"><img src="{{ asset('/images/home-icon.png') }}" alt="ホーム" /></a></li>
-                <li><a href="/stack"><img src="{{ asset('/images/books-icon.png') }}" alt="積み上げ" /></a></li>
+                <li><a href="/stack"><img class="footer-stack-icon" src="{{ asset('/images/books-icon.png') }}" alt="積み上げ" /></a></li>
                 <li><a href="/help"><img src="{{ asset('/images/help-icon.png') }}" alt="ヘルプ" /></a></li>
             </ul>
         </nav>

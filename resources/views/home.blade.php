@@ -12,13 +12,13 @@
         <div class="tags-tab">
             |<a href="/home">すべて</a>|
             @foreach($tags as $tag)
-            <a href="/home/{{ $tag->id }}">🔖{{ $tag->abbreviation }}</a>|
+            <a href="/home/{{ $tag->id }}">{{ $tag->abbreviation }}</a>|
             @endforeach
         </div>
         @if($mastered_tags->count() > 0)
         <div class="mastered-tags-tab">|
             @foreach($mastered_tags as $mastered_tag)
-            <a href="/home/{{ $mastered_tag->id }}">🔖{{ $mastered_tag->abbreviation }}</a>|
+            <a href="/home/{{ $mastered_tag->id }}">{{ $mastered_tag->abbreviation }}</a>|
             @endforeach
         </div>
         @endif

@@ -44,6 +44,11 @@
                     </ul>
                 </div>
             @endif
+            @if(!empty($break_note))
+                <div class="broken-note-button">
+                    <a href="/broken-note">中断ノートを再開</a>
+                </div>
+            @endif
             <div>
                 <select class="note-tag-select" name="tag_id">
                     <option value="">▼ タグを選択</option>
@@ -61,23 +66,20 @@
                 </select>
                 @csrf
                 <input class="note-title" type="text" name="title" value="{{ old('title') }}" placeholder="タイトル（20文字以内）" />
-                @if(!empty($break_note))
-                    <a class="broken-note-button" href="/broken-note">中断ノートを再開</a>
-                @endif
             </div>
             <div class="note-story">
                 <textarea name="story" rows="30" placeholder="執筆内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
             </div>
-            <p id="input-length">0/800文字</p>
+            <div class="note-under-textarea">
+                <p id="input-length">0/800文字</p>
+                <a class="to-home-button" href="/home">ホームへ</a>
+            </div>
             <div class="note-buttons">
                 <div>
                     <input class="note-submit-button" type="submit" value="投稿">
                     @if(empty($break_note))
                     <input class="note-break-button" type="submit" name="to_break" value="中断保存"><small>＊中断ノート再開時、イメージは再選択となります。</small>
                     @endif
-                </div>
-                <div>
-                    <a class="to-home-button" href="/home">ホームへ</a>
                 </div>
             </div>
         </form>

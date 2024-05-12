@@ -31,13 +31,12 @@
             <a class="first-note-button" href="/note">最初のノートを書く</a>
         </div>
         <div class="tag-form">
-            <div>タグを登録する</div>
+            <div>タグを登録する<small> ※５つまで</small></div>
             <form action="/store-tag" method="post">
                 @csrf
                 <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名(10文字以内)" value="{{ old('tagname') }}">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
-                <small>※タグ登録は５つまで</small>
             </form>
         </div>
         @if($errors->any())
@@ -51,13 +50,12 @@
         @endif
     @elseif($tags->count() < 5)
         <div class="tag-form">
-            <div>タグを登録する</div>
+            <div>タグを登録する<small> ※５つまで</small></div>
             <form action="/store-tag" method="post">
                 @csrf
                 <input class="create-tag" type="text" name="tagname" placeholder="新しいタグ名(10字以内)" value="{{ old('tagname') }}">
                 <input class="create-tag-abbreviation" type="text" name="abbreviation" placeholder="略称(4字以内)" value="{{ old('abbreviation') }}">
                 <input class="create-tag-button" type="submit" value="登録">
-                <small>※タグ登録は５つまで</small>
             </form>
         </div>
         @if($errors->any())
@@ -75,7 +73,7 @@
         <!-- <form action="/store_book" method="post"> -->
             <table class="stack-table">
                 <tr>
-                    <th>タグ名</th>
+                    <th class="stack-tagname">タグ名</th>
                     <th class="stack-days-th">積み上げノート数（ /100日）</th>
                     <th class="stack-create-th">タグ作成日</th>
                 </tr>
@@ -116,7 +114,7 @@
 
     <table class="stack-table">
         <tr>
-            <th>ブック名</th>
+            <th class="stack-tagname">ブック名</th>
             <th class="stack-days-th">積み上げブック数（1冊 = 100ノート）</th>
             <th class="stack-create-th">達人到達日</th>
         </tr>
