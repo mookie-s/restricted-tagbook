@@ -74,7 +74,7 @@
             <table class="stack-table">
                 <tr>
                     <th class="stack-tagname">タグ名</th>
-                    <th class="stack-days-th">積み上げノート数（ /100日）</th>
+                    <th class="stack-days-th">積み上げノート(/100日)</th>
                     <th class="stack-create-th">タグ作成日</th>
                 </tr>
                 @foreach ($tags as $tag)
@@ -112,19 +112,13 @@
         <!-- </form> -->
     @endif
 
-    <table class="stack-table">
-        <tr>
-            <th class="stack-tagname">ブック名</th>
-            <th class="stack-days-th">積み上げブック数（1冊 = 100ノート）</th>
-            <th class="stack-create-th">達人到達日</th>
-        </tr>
-        @if($books->count() == 0)
+    @if($books->count() != 0)
+        <table class="stack-table">
             <tr>
-                <td><input type="text" tabindex="-1" value="📘-"></td>
-                <td>-</td>
-                <td>-</td>
+                <th class="stack-tagname">ブック名</th>
+                <th class="stack-days-th">積み上げブック(1冊=100ノート)</th>
+                <th class="stack-create-th">達人到達日</th>
             </tr>
-        @else
             @foreach($books as $book)
                 <tr>
                     @php
@@ -245,8 +239,8 @@
                     @endif
                 </tr>
             @endforeach
-        @endif
-    </table>
+        </table>
+    @endif
 
     @if($tags->count() != 0)
     <div class="stack-tagname-change">

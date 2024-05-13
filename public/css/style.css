@@ -476,10 +476,10 @@ footer {
     width: 22%;
 }
 .stack-days-th {
-    width: 68%;
+    width: 64%;
 }
 .stack-create-th {
-    width: 10%;
+    width: 14%;
 }
 .stack-table td {
     background-color: #737373;
@@ -1035,7 +1035,7 @@ footer {
     .tags-tab a {
         width: 15%;
         font-size: 0.88rem;
-        border-radius: 3px; */
+        border-radius: 3px;
         padding: 1px 0;
     }
     .mastered-tags-tab {
@@ -1049,7 +1049,7 @@ footer {
     .note-list-image img {
         height: 102px;
         aspect-ratio: 1/1;
-        border-radius: 3px; */
+        border-radius: 3px;
         margin: 2px 5px -6px 2px;
     }
     .note-list-headline {
@@ -1137,21 +1137,24 @@ footer {
         font-size: 0.8rem;
     }
     .stack-tagname {
-        width: 40%;
+        width: 30%;
+    }
+    .stack-days-th {
+        width: 52%;
     }
     .stack-create-th {
-        width: 10%;
+        width: 18%;
     }
     .stack-table td a {
         line-height: 24px;
         background: #f6701d;
-        border-radius: 3px; */
+        border-radius: 3px;
     }
     .stack-table td input {
         line-height: 24px;
     }
     .stack-table td img {
-        width: 8.6%;
+        width: 9%;
     }
     .stack-tagname-change {
         font-size: 0.9rem;
@@ -1186,7 +1189,7 @@ footer {
     /* 昇格確認画面 */
     .promoted-to-book {
         font-size: 0.9rem;
-        justify-content: center; */
+        justify-content: center;
         margin-top: 30px;
     }
     .promoted-submit-button {

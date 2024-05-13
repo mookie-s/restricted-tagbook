@@ -8,6 +8,12 @@
     </x-slot:meta_description>
 
     <h2>ノート最新100</h2>
+    @if(session('new_note_message'))
+        <small><div class="alert alert-primary mx-auto">！{{session('new_note_message')}}</div></small>
+    @endif
+    @if(session('break_note_message'))
+        <small><div class="alert alert-light mx-auto">！{{session('break_note_message')}}</div></small>
+    @endif
     <div class="tags-link">
         <div class="tags-tab">
             |<a href="/home">すべて</a>|
@@ -32,12 +38,6 @@
         <div>
             <a class="first-note-button" href="/note">最初のノートを書く</a>
         </div>
-    @endif
-    @if(session('new_note_message'))
-        <small><div class="alert alert-primary mx-auto">！{{session('new_note_message')}}</div></small>
-    @endif
-    @if(session('break_note_message'))
-        <small><div class="alert alert-light mx-auto">！{{session('break_note_message')}}</div></small>
     @endif
 
     <!-- この$iはモーダルに各ノート内容を表示するために使用 -->
