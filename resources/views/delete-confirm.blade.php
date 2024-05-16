@@ -18,7 +18,7 @@
         <div class="delete-confirm">
             <div>
                 <h2>タグの削除</h2>
-                <small class="delete-message">以下のタグと、紐づけノートが削除されます。<br>ブック化した昇格済みノートは削除されません。</small>
+                <small class="delete-message">以下のタグと、紐づけノートが削除されます。<br>※ブック化した昇格済みノートは削除されません。</small>
                 <div class="delete-tagname">
                     <p>タグ名： 🔖{{ $delete_tag->tagname }}</p>
                     <p>略称： {{ $delete_tag->abbreviation }}</p>
@@ -47,16 +47,13 @@
                 </div>
                 @endif
                 <!-- <hr> -->
-                <form action="/destroy" method="post">
+                <form class="delete-confirm-buttons" action="/destroy" method="post">
                     @csrf
                     <input type="hidden" name="destroy_tag" value="{{ $delete_tag->id }}">
-                    <div class="delete-confirm-buttons">
+                    <div>
                         <input class="delete-submit-button" type="submit" value="！タグを削除">
                         <a class="cancel-button" href="/stack">キャンセル</a>
                     </div>
-                    <p class="delete-message">
-                        <small >※タグ削除後も、検索ページでのノート検索は可能です。</small>
-                    </p>
                 </form>
             </div>
         </div>

@@ -18,7 +18,7 @@
         <div class="change-confirm">
             <div>
                 <h2>タグ名の変更</h2>
-                <small class="change-message">以下のタグ名と関連ノートの紐づけが変更されます。<br>すでに昇格化された同名ブック名とノートの紐づけは変更されません。</small>
+                <small class="change-message">以下のタグ名と関連ノートの紐づけが変更されます。<br>※すでに昇格化された同名ブックがある場合は<br>ブックのタグ名とノートの紐づけは変更されません。</small>
                 <div class="change-tagname">
                     <div>
                     @if($errors->any())

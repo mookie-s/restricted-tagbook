@@ -73,7 +73,7 @@
         <!-- <form action="/store_book" method="post"> -->
             <table class="stack-table">
                 <tr>
-                    <th class="stack-tagname">タグ名</th>
+                    <th class="stack-tagname">タグ名(略称)</th>
                     <th class="stack-days-th">積み上げノート(/100日)</th>
                     <th class="stack-create-th">タグ作成日</th>
                 </tr>
@@ -115,7 +115,7 @@
     @if($books->count() != 0)
         <table class="stack-table">
             <tr>
-                <th class="stack-tagname">ブック名</th>
+                <th class="stack-tagname">ブック名(略称)</th>
                 <th class="stack-days-th">積み上げブック(1冊=100ノート)</th>
                 <th class="stack-create-th">達人到達日</th>
             </tr>

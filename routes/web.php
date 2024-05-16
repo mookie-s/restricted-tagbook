@@ -41,7 +41,7 @@ Route::get('/broken-note', [BrokenNoteController::class, 'index'])->middleware('
 Route::post('/broken-note', [BrokenNoteController::class, 'update']);
 
 Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
-// Route::post('/search', [SearchController::class, 'index'])->middleware('auth');
+Route::post('/search', [SearchController::class, 'index'])->middleware('auth');
 
 Route::get('/stack', [StackController::class, 'index'])->middleware('auth');
 Route::post('store-tag', [StackController::class, 'store_tag']);

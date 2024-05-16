@@ -7,15 +7,15 @@
         すべてのノートから検索
     </x-slot:meta_description>
 
-    <h2>全ノート検索</h2>
-    <form action="/search" method="get">
-        <!-- @csrf -->
+    <h2>ノート検索</h2>
+    <form action="/search" method="post">
+        @csrf
         <div class="search-tab">
             <div>
-                <select class="search-key" name="tagname">
+                <select class="search-key" name="tag_id">
                         <option value="">▼ タグを選択</option>
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->tagname }}" @if($tag->tagname == $search_tagname) selected @endif>🔖{{ $tag->tagname }}</option>
+                        <option value="{{ $tag->id }}" @if($tag->id == $search_tag_id) selected @endif>🔖{{ $tag->tagname }}</option>
                     @endforeach
                 </select>
             </div>
@@ -38,14 +38,14 @@
         </div>
         <div class="search-tab">
             <div>
-                <input class="search-key" type="search" name="keyword" value="{{ $search_keyword }}" placeholder="キーワード" autofocus>
+                <input class="search-key" type="text" name="keyword" value="{{ $search_keyword }}" placeholder="キーワード" autofocus>
                 <input class="search-button" type="submit" value="検索">
                 <a href="/search">リセット</a>
             </div>
         </div>
     </form>
-    @if($search_tagname || $search_year || $search_month || $search_keyword)
-        <p class="promoted-message">📝 検索 >@if($search_tagname) 🔖@endif{{ $search_tagname }}@if($search_tagname) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif @if($search_keyword)"{{ $search_keyword }} "@endif</p>
+    @if($search_tag_id || $search_year || $search_month || $search_keyword)
+        <p class="promoted-message">📝 検索 >@if($search_tag_id) 🔖{{ $search_tag->tagname }}@endif　@if($search_tag_id) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif　@if($search_keyword)"{{ $search_keyword }} "@endif</p>
     @endif
 
     <!-- この$iはモーダルに各ノート内容を表示するために使用 -->

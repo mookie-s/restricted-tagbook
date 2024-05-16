@@ -18,7 +18,7 @@
         <h2>ノートの作成</h2>
         <div class="note-message">
             <div><small class="promoted-message">※１タグにつき１日１投稿までです。</small></div>
-            <div><small class="promoted-message">※すでに本日投稿したタグや、中断保存分含めたノート数が100件かつブック化していないタグは選択できません。</small></div>
+            <div><small class="promoted-message">※すでに本日ノートを投稿したタグや、中断保存分含めたノート数100件かつブック化していないタグは選択できません。</small></div>
         </div>
         @if($tags->count() == 0)
         <div>
