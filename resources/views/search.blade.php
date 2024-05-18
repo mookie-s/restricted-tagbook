@@ -7,7 +7,7 @@
         すべてのノートから検索
     </x-slot:meta_description>
 
-    <h2>ノート検索</h2>
+    <h2>全ノート検索</h2>
     <form action="/search" method="post">
         @csrf
         <div class="search-tab">
@@ -45,7 +45,7 @@
         </div>
     </form>
     @if($search_tag_id || $search_year || $search_month || $search_keyword)
-        <p class="promoted-message">📝 検索 >@if($search_tag_id) 🔖{{ $search_tag->tagname }}@endif　@if($search_tag_id) @endif {{ $search_year }}@if($search_year)年@endif {{ $search_month }}@if($search_month)月@endif　@if($search_keyword)"{{ $search_keyword }} "@endif</p>
+        <p class="promoted-message">📝 検索 >@if($search_tag_id) 🔖{{ $search_tag->tagname }},@endif @if($search_tag_id) @endif {{ $search_year }}@if($search_year)年,@endif {{ $search_month }}@if($search_month)月,@endif @if($search_keyword)"{{ $search_keyword }} "@endif</p>
     @endif
 
     <!-- この$iはモーダルに各ノート内容を表示するために使用 -->

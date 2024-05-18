@@ -11,6 +11,9 @@
     @if(session('new_note_message'))
         <small><div class="alert alert-primary mx-auto">！{{session('new_note_message')}}</div></small>
     @endif
+    @if(session('update_note_message'))
+        <small><div class="alert alert-primary mx-auto">！{{session('update_note_message')}}</div></small>
+    @endif
     @if(session('break_note_message'))
         <small><div class="alert alert-light mx-auto">！{{session('break_note_message')}}</div></small>
     @endif
@@ -89,8 +92,17 @@
                     <p>{{ $note->story }}</p>
                 </div>
                 <div class="modal-footer">
+                    <form action="/edit-note" method="post" style="margin-right: 30px;">
+                        @csrf
+                        <input type="hidden" name="note_id" value="{{ $note->id }}">
+                        @if($note->image)
+                            <input type="hidden" name="image" value="{{ $note->image }}">
+                        @endif
+                        <input type="hidden" name="title" value="{{ $note->title }}">
+                        <input type="hidden" name="story" value="{{ $note->story }}">
+                        <button type="submit" class="btn btn-default">編集</button>
+                    </form>
                     <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                    <!-- <button type="button" class="btn btn-danger">削除</button> -->
                 </div>
             </div>
         </div>

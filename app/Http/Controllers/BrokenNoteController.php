@@ -40,7 +40,7 @@ class BrokenNoteController extends Controller
             $break_note_message = 'ノートを中断保存しました';
         } else {
             $broken_note->break = 0;
-            $new_note_message = 'ノートを執筆しました';
+            $new_note_message = 'ノートを投稿しました';
         }
         $broken_note->save();
 

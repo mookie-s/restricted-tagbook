@@ -33,6 +33,9 @@ Route::get('/', [HelloController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/home/{tag}', [HomeController::class, 'show'])->middleware('auth');
+Route::get('/edit-note', [HomeController::class, 'edit_note'])->middleware('auth');
+Route::post('/edit-note', [HomeController::class, 'edit_note'])->middleware('auth');
+Route::post('update-note', [HomeController::class, 'update_note'])->middleware('auth');
 
 Route::get('/note', [NoteController::class, 'index'])->middleware('auth');
 Route::post('/note', [NoteController::class, 'store'])->middleware('auth');

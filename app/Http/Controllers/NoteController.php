@@ -95,7 +95,7 @@ class NoteController extends Controller
             $note->break = 1;
             $break_note_message = 'ノートを中断保存しました';
         } else {
-            $new_note_message = 'ノートを執筆しました';
+            $new_note_message = 'ノートを投稿しました';
         }
         // 該当タグがすでに達人達成している場合は作成ノートを最初から昇格させる
         if ($tag->mastered == 1) {

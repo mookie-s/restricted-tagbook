@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>中断ノート再開</title>
-    <meta name="description" content="ノートを作る">
+    <title>ノート編集</title>
+    <meta name="description" content="ノートの編集">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
@@ -15,11 +15,12 @@
 </head>
 <body>
     <main class="wrapper">
-        <h2>中断ノートの再開</h2>
-        <form action="/broken-note" method="post" enctype="multipart/form-data">
+        <h2>ノートの編集</h2>
+        <form action="/update-note" method="post" enctype="multipart/form-data">
             @csrf
-            画像：<input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" onchange="previewFile(this);">
-            <img class="note-image" id="preview" @if($broken_note->image) src="{{ Storage::url($broken_note->image) }}" alt="{{ old('title', $broken_note->title) }}" @endif />
+            <input type="hidden" name="note_id" value="{{ $note->id }}">
+            <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .svg" onchange="previewFile(this);">
+            <img class="note-image" id="preview" @if($note->image) src="{{ Storage::url($note->image) }}" alt="{{ old('title', $note->title) }}" @endif ></img>
 
             @if($errors->any())
                 <div></div>
@@ -30,23 +31,15 @@
                     </ul>
                 </div>
             @endif
-            <div>タグ名：
-                <select class="note-tag-select" name="tag_id">
-                    <option value="">▼ タグを選択</option>
-                    @foreach ($tags as $tag)
-                        <option value="{{ $tag->id }}"
-                        @if($broken_note->tag_id == $tag->id)
-                            selected
-                        @endif
-                        >🔖{{ $tag->tagname }}</option>
-                    @endforeach
-                </select>
-                @csrf
-                タイトル：<input class="note-title" type="text" name="title" value="{{ old('title', $broken_note->title) }}" placeholder="（20文字以内）" />
+            <div>
+                <input type="hidden" name="tag_id" value="{{ $note->tag_id }}">
+                タグ名：<input class="note-tag" type="text" name="tagname" value="🔖{{ $note->tag->tagname }}" disabled />
+            </div>
+            <div>
+                タイトル：<input class="note-title" type="text" name="title" value="{{ old('title', $note->title) }}" placeholder="タイトル（20文字以内）" />
             </div>
             <div class="note-story">
-                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story', $broken_note->story) }}</textarea>
-                <input type="hidden" name="break" value="{{ $broken_note->break }}">
+                <textarea name="story" rows="30" placeholder="執筆内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story', $note->story) }}</textarea>
             </div>
             <div class="note-under-textarea">
                 <p id="input-length">0/800文字</p>
@@ -54,9 +47,13 @@
             </div>
             <div class="note-buttons">
                 <div>
-                    <input class="note-submit-button" type="submit" value="投稿">
+                    <input class="note-submit-button" type="submit" value="更新">
                     @if(empty($break_note))
-                    <input class="note-break-button" type="submit" name="to_break" value="中断保存">
+                        <input class="note-break-button" type="submit" name="to_break" value="中断保存">
+                    @else
+                        <div class="note-message">
+                            <div><small class="promoted-message">※すでに中断保存したノートがある場合は「中断保存」ボタンは表示されません。</small></div>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -67,7 +64,7 @@
     <script>
     // アップロード画像のプレビュー
     function previewFile(img){
-        let fileData = new FileReader();
+        const fileData = new FileReader();
         fileData.onload = (function() {
         //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
         //プレビュー表示している
@@ -75,11 +72,11 @@
         });
         fileData.readAsDataURL(img.files[0]);
     }
-    // textareaの文字数カウンター（改行コード：LF、CR、CRLFをすべて２文字としてカウント）
+    // textareaの文字数をカウント（改行コード：LF、CR、CRLFをすべて2文字としてカウント）
     function countGrapheme( str ) {
-        let str_step1 = str.replace(/\n/g, 'ああ');
-        let str_step2 = str_step1.replace(/\r/g, 'いい');
-        let str_all = str_step2.replace(/\r\n/g, 'うう');
+        const str_step1 = str.replace(/\n/g, 'ああ');
+        const str_step2 = str_step1.replace(/\r/g, 'いい');
+        const str_all = str_step2.replace(/\r\n/g, 'うう');
         const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
         return [...segmenter.segment(str_all)].length;
     }

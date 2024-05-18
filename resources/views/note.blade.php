@@ -16,6 +16,11 @@
 <body>
     <main class="wrapper">
         <h2>ノートの作成</h2>
+        @if(!empty($break_note))
+            <div class="broken-note-button">
+                <a href="/broken-note">中断ノートを再開</a>
+            </div>
+        @endif
         <div class="note-message">
             <div><small class="promoted-message">※１タグにつき１日１投稿までです。</small></div>
             <div><small class="promoted-message">※すでに本日ノートを投稿したタグや、中断保存分含めたノート数100件かつブック化していないタグは選択できません。</small></div>
@@ -26,15 +31,10 @@
         </div>
         @else
         <form action="/note" method="post" enctype="multipart/form-data">
-            <div class="preview-back">
-                <div class="file">
-                    <label class="file__label02">
-                        @csrf
-                        <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" value="{{ old('image') }}">
-                    </label>
-                    <small class="file__none">イメージが選択されていません</small>
-                </div>
-            </div>
+            @csrf
+            画像：<input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" onchange="previewFile(this);">
+            <img class="note-image" id="preview" src="{{ old('image') }}" alt="{{ old('title') }}" />
+
             @if($errors->any())
                 <div></div>
                     <ul>
@@ -44,12 +44,7 @@
                     </ul>
                 </div>
             @endif
-            @if(!empty($break_note))
-                <div class="broken-note-button">
-                    <a href="/broken-note">中断ノートを再開</a>
-                </div>
-            @endif
-            <div>
+            <div>タグ名：
                 <select class="note-tag-select" name="tag_id">
                     <option value="">▼ タグを選択</option>
                     @foreach($tags as $tag)
@@ -64,11 +59,13 @@
                         @endforeach
                     @endforeach
                 </select>
+            </div>
+            <div>
                 @csrf
-                <input class="note-title" type="text" name="title" value="{{ old('title') }}" placeholder="タイトル（20文字以内）" />
+                タイトル：<input class="note-title" type="text" name="title" value="{{ old('title') }}" placeholder="（20文字以内）" />
             </div>
             <div class="note-story">
-                <textarea name="story" rows="30" placeholder="執筆内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
+                <textarea name="story" rows="30" placeholder="内容（200文字以上～800文字以内）" onkeyup="ShowLength(value);">{{ old('story') }}</textarea>
             </div>
             <div class="note-under-textarea">
                 <p id="input-length">0/800文字</p>
@@ -89,19 +86,15 @@
 
     <script>
     // アップロード画像のプレビュー
-    $(function () {
-        $('.preview-back input[type=file]').on('change', function () {
-            let elem = this;
-            let fileReader = new FileReader();
-            fileReader.readAsDataURL(elem.files[0]);
-            fileReader.onload = function () {
-                let imgUrl = fileReader.result;
-                let fileNames = Array.from(elem.files).map(file => file.name);
-                $(elem).closest(".preview-back").find(".file__label02").css("background-image", `url('${imgUrl}')`);
-                $(elem).closest(".preview-back").find(".file__none").text(fileNames.join());
-            };
+    function previewFile(img){
+        let fileData = new FileReader();
+        fileData.onload = (function() {
+        //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+        //プレビュー表示している
+        document.getElementById('preview').src = fileData.result;
         });
-    });
+        fileData.readAsDataURL(img.files[0]);
+    }
     // textareaの文字数をカウント（改行コード：LF、CR、CRLFをすべて2文字としてカウント）
     function countGrapheme( str ) {
         let str_step1 = str.replace(/\n/g, 'ああ');

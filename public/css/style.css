@@ -264,34 +264,56 @@ footer {
 }
 .modal-body img {
     width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    /* aspect-ratio: 16/9;
+    object-fit: cover; */
     border-radius: 3px;
 }
 .modal-detail {
     margin: 0px 15px;
 }
-.modal-detail h3 {
+.modal-title {
     font-size: 1.125rem;
     font-weight: bold;
+    text-indent: .7rem;
 }
 .modal-detail p {
     font-size: 1rem;
-    margin-top: 5px;
+    text-indent: 1rem;
+    margin-top: 10px;
     white-space: pre-wrap;
 }
 .modal-footer button {
+    color: #545454;
     font-size: 0.85rem;
+    font-weight: lighter;
+    background: #eeeeee;
+}
+/* ノート編集画面 */
+.note-tag {
+    color: #fff;
 }
 /* ■■■■■■■ note ■■■■■■■ */
 .note-message {
     margin-left: 5px;
 }
-.file__label02 {
+input[type=file] {
+    font-size: 0.85rem;
+    color: #919090;
+    border-radius: 3px;
+}
+.note-image {
+    width: 100%;
+    /* aspect-ratio: 16/9; */
+    /* object-fit: cover; */
+    border: 1px solid #737373;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+/* .file__label02 {
     display: block;
     width: 100%;
     aspect-ratio: 16/9;
-    /* width: min(100%, 680px); */
+    width: min(100%, 680px);
     padding-top: 390px;
     margin-inline: auto;
     cursor: pointer;
@@ -303,7 +325,7 @@ footer {
 }
 .file input[type=file] {
     display: none;
-}
+} */
 .note-tag-icon {
     width: 1rem;
     height: 1rem;
@@ -313,8 +335,8 @@ footer {
     font-weight: bold;
     background-color: #fff;
     border-radius: 3px;
-    padding: 5px 10px 5px 5px;
-    margin: 5px 5px 0 5px;
+    padding: 0 5px;
+    margin: 5px 0;
 }
 .note-title {
     width: 21em;
@@ -323,8 +345,7 @@ footer {
     /* font-weight: bold; */
     background-color: #fff;
     border-radius: 3px;
-    padding: 5px 5px;
-    margin-top: 5px;
+    padding: 0px 5px;
 }
 .broken-note-button {
     width: 10rem;
@@ -332,13 +353,14 @@ footer {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     margin: 0 5px;
 }
 .note-story textarea {
     width: 100%;
     color: #545454;
     background-color: #fff;
+    text-indent: 1rem;
     border-radius: 3px;
     padding: 5px 5px;
     margin-top: 5px;
@@ -349,14 +371,14 @@ footer {
 }
 #input-length {
     font-size: 0.9rem;
-    color: #c3c3c3;
+    color: #c7c7c7;
     margin: 0 0 5px 5px;
 }
 .to-home-button {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 5px 15px;
+    padding: 5px 10px;
     margin-right: 5px;
 }
 .note-buttons {
@@ -368,7 +390,7 @@ footer {
     color: #fff;
     background-color: #f6701d;
     border-radius: 3px;
-    padding: 8px 30px;
+    padding: 5px 20px;
     margin: 5px 5px 0 5px;
 }
 .note-submit-button:active {
@@ -379,7 +401,7 @@ footer {
     color: #fff;
     background-color: #737373;
     border-radius: 3px;
-    padding: 8px 15px;
+    padding: 5px 15px;
     margin: 5px 10px 0 5px;
 }
 .note-break-button:active {
@@ -1070,11 +1092,6 @@ footer {
         opacity: 0.3;
     }
     /* モーダル */
-    .modal-body img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-    }
     .modal-header {
         font-size: 0.9rem;
     }
