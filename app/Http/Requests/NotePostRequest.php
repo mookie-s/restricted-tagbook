@@ -17,6 +17,8 @@ class NotePostRequest extends FormRequest
             return true;
         } elseif ($this->path() == 'update-note') {
             return true;
+        } elseif ($this->path() == 'update-searched-note') {
+            return true;
         } else {
             return false;
         }

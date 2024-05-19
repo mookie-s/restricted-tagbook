@@ -444,6 +444,10 @@ input[type=file] {
     color: #545454;
     background-color: #fff;
 }
+/* ノート編集画面 */
+.break-note-message {
+    color: #ffde59;
+}
 /* ■■■■■■■ stack ■■■■■■■ */
 .first-note-button {
     color: #fff;

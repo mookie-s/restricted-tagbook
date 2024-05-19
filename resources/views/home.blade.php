@@ -94,6 +94,9 @@
                 <div class="modal-footer">
                     <form action="/edit-note" method="post" style="margin-right: 30px;">
                         @csrf
+                        @if($tag_id)
+                            <input type="hidden" name="tag_id" value="{{ $tag_id }}">
+                        @endif
                         <input type="hidden" name="note_id" value="{{ $note->id }}">
                         @if($note->image)
                             <input type="hidden" name="image" value="{{ $note->image }}">

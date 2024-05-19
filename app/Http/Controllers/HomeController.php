@@ -15,11 +15,12 @@ class HomeController extends Controller
     public function index(): View
     {
         $user_id = Auth::id();
+        $tag_id = '';
         $tags = Tag::where('user_id', $user_id)->where('mastered', 0)->take(5)->get();
         $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(6)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc')->take(100)->get();
 
-        return view('/home', compact('tags', 'notes', 'mastered_tags'));
+        return view('/home', compact('tag_id', 'tags', 'notes', 'mastered_tags'));
     }
 
     public function show(string $tag_id): View
@@ -30,25 +31,25 @@ class HomeController extends Controller
         $mastered_tags = Tag::where('user_id', $user_id)->where('mastered', 1)->take(6)->get();
         $notes = Note::where('user_id', $user_id)->where('break', 0)->where('tag_id', $tag_id)->orderBy('id', 'desc')->take(100)->get();
 
-        return view('/home', compact('get_tag', 'tags', 'notes', 'mastered_tags'));
+        return view('/home', compact('tag_id', 'get_tag', 'tags', 'notes', 'mastered_tags'));
     }
 
     public function edit_note(Request $request): View
     {
         $user_id = Auth::id();
+        $tag_id = $request->tag_id;
         $note_id = $request->note_id;
         $note = Note::find($note_id);
 
         // 中断ノート
         $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
 
-        return view('/edit-note', compact('note', 'break_note'));
+        return view('/edit-note', compact('tag_id', 'note', 'break_note'));
     }
 
     public function update_note(NotePostRequest $request): RedirectResponse
     {
         $note_id = $request->note_id;
-
         $note = Note::find($note_id);
         if ($request->file('image')) {
             $image_path = $request->file('image')->store('public/images');
@@ -62,11 +63,15 @@ class HomeController extends Controller
         if ($request->has('to_break')) {
             $note->break = 1;
             $break_note_message = 'ノートを中断保存しました';
+            $tag_id = $request->tag_id;
+            $url = route('tag.home', ['tag_id' => $tag_id]);
         } else {
             $update_note_message = 'ノートを更新しました';
+            $tag_id = $request->tag_id;
+            $url = route('tag.home', ['tag_id' => $tag_id]);
         }
         $note->save();
 
-        return redirect('/home')->with('update_note_message', $update_note_message)->with('break_note_message', $break_note_message);
+        return redirect($url)->with('tag_id', $tag_id)->with('update_note_message', $update_note_message)->with('break_note_message', $break_note_message);
     }
 }

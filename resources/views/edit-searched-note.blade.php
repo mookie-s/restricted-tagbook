@@ -21,8 +21,9 @@
                 <div><small class="break-note-message">※中断保存しているノートがあるため「中断保存」ボタンは表示されません。</small></div>
             </div>
         @endif
-        <form action="/update-note" method="post" enctype="multipart/form-data">
+        <form action="/update-searched-note" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="note_id" value="{{ $note->id }}">
             <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .svg" onchange="previewFile(this);">
             <img class="note-image" id="preview" @if($note->image) src="{{ Storage::url($note->image) }}" alt="{{ old('title', $note->title) }}" @endif ></img>
 
@@ -36,9 +37,20 @@
                 </div>
             @endif
 
-            <input type="hidden" name="tag_id" value="{{ $note->tag_id }}">
-            <input type="hidden" name="note_id" value="{{ $note->id }}">
+            @if($search_tag_id)
+                <input type="hidden" name="search_tag_id" value="{{ $search_tag_id }}">
+            @endif
+            @if($search_year)
+                <input type="hidden" name="search_year" value="{{ $search_year }}">
+            @endif
+            @if($search_month)
+                <input type="hidden" name="search_month" value="{{ $search_month }}">
+            @endif
+            @if($search_keyword)
+                <input type="hidden" name="search_keyword" value="{{ $search_keyword }}">
+            @endif
             <div>
+                <input type="hidden" name="tag_id" value="{{ $note->tag_id }}">
                 タグ名：<input class="note-tag" type="text" name="tagname" value="🔖{{ $note->tag->tagname }}" disabled />
             </div>
             <div>
@@ -49,7 +61,7 @@
             </div>
             <div class="note-under-textarea">
                 <p id="input-length">0/800文字</p>
-                <a class="to-home-button" href="/home">ホームへ戻る</a>
+                <a class="to-home-button" href="/search">ノート検索へ戻る</a>
             </div>
             <div class="note-buttons">
                 <div>

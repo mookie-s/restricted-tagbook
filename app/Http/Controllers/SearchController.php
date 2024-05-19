@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\NotePostRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Tag;
 use App\Models\Note;
@@ -48,7 +50,7 @@ class SearchController extends Controller
         $query = Note::query();
 
         $search_tag = $tags->where('id', $search_tag_id)->first();
-        $query->where('user_id', $user_id)->orderBy('id', 'desc');
+        $query->where('user_id', $user_id)->where('break', 0)->orderBy('id', 'desc');
 
         if (!empty($search_tag_id)) {
             $query->WhereHas('tag', function ($q) use ($search_tag_id) {
@@ -86,5 +88,61 @@ class SearchController extends Controller
         }
 
         return view('/search', compact('tags' ,'years', 'months', 'search_tag', 'search_tag_id', 'search_year', 'search_month', 'search_keyword', 'searched_notes'));
+    }
+
+    public function edit_searched_note(Request $request): View
+    {
+        $search_tag_id = $request->search_tag_id;
+        $search_year = $request->search_year;
+        $search_month = $request->search_month;
+        $search_keyword = $request->search_keyword;
+
+        $user_id = Auth::id();
+        $note_id = $request->note_id;
+        $note = Note::find($note_id);
+
+        // 中断ノート
+        $break_note = Note::where('user_id', $user_id)->where('break', 1)->first();
+
+        return view('/edit-searched-note', compact('search_tag_id','search_year', 'search_month', 'search_keyword', 'note', 'break_note'));
+    }
+
+    public function update_searched_note(NotePostRequest $request): RedirectResponse
+    {
+        $user_id = Auth::id();
+        $note_id = $request->note_id;
+
+        $note = Note::find($note_id);
+        if ($request->file('image')) {
+            $image_path = $request->file('image')->store('public/images');
+            $note->image = $image_path;
+        }
+        $note->title = $request->title;
+        $note->story = $request->story;
+
+        $break_note_message = '';
+        $update_note_message = '';
+        if ($request->has('to_break')) {
+            $note->break = 1;
+            $break_note_message = 'ノートを中断保存しました';
+
+            $search_tag_id = $request->search_tag_id;
+            $search_tag = Tag::where('user_id', $user_id)->find($search_tag_id);
+            $search_year = $request->search_year;
+            $search_month = $request->search_month;
+            $search_keyword = $request->search_keyword;
+        } else {
+            $update_note_message = 'ノートを更新しました';
+
+            $search_tag_id = $request->search_tag_id;
+            $search_tag = Tag::where('user_id', $user_id)->find($search_tag_id);
+            $search_year = $request->search_year;
+            $search_month = $request->search_month;
+            $search_keyword = $request->search_keyword;
+        }
+        $note->save();
+
+        return redirect('/search')->with('search_tag_id', $search_tag_id)->with('search_tag', $search_tag)->with('search_year', $search_year)->with('search_month', $search_month)->with('search_keyword', $search_keyword)->with('update_note_message', $update_note_message)->with('break_note_message', $break_note_message);
+        // ->with('autoSubmit', true); // js設定で検索ボタンを自動で押すため
     }
 }
