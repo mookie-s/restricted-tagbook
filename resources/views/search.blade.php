@@ -14,8 +14,8 @@
     @if(session('break_note_message'))
         <small><div class="alert alert-light mx-auto">！{{session('break_note_message')}}</div></small>
     @endif
-    <form action="/search" method="post">
-        @csrf
+    <form action="/search" method="get">
+        <!-- @csrf -->
         <div class="search-tab">
             <div>
                 <select class="search-key" name="tag_id">
@@ -163,7 +163,7 @@
     <!-- ここまでモーダル -->
     @endforeach
     @if(!empty($searched_notes))
-        {{ $searched_notes->appends(request()->query())->links() }}
+        {{ $searched_notes->appends(request()->query())->links('vendor.pagination.custom-simple') }}
     @endif
 
     <!-- Optional JavaScript -->
