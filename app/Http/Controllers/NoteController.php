@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\NotePostRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Note;
 use App\Models\Book;
+use App\Helpers\ImageHelper;
 
 class NoteController extends Controller
 {
@@ -78,13 +79,31 @@ class NoteController extends Controller
         $note = new Note();
         $note->user_id = $user_id;
         $note->tag_id = $tag_id;
+
         // 該当タグがすでに達人達成している場合は同名のブックへの紐づけを行う
         if ($tag->mastered == 1) {
             $note->book_id = $book->id;
         }
+
         if ($request->file('image')) {
-            $image_path = $request->file('image')->store('public/images');
-            $note->image = $image_path;
+            // 画像を保存
+            $path = $request->file('image')->store('public/images');
+
+            // 保存された画像のフルパスを取得
+            $fullPath = storage_path('app/' . $path);
+
+            // 幅のみ指定してリサイズ（高さはアスペクト比を維持して計算）
+            ImageHelper::resizeImage($fullPath, $path,
+                800, // 幅
+                null, // 高さ
+                function ($constraint) {
+                    // 縦横比を保持したままにする
+                    $constraint->aspectRatio();
+                    // 小さい画像は大きくしない
+                    $constraint->upsize();
+                }
+            );
+            $note->image = $path;
         }
         $note->title = $request->title;
         $note->story = $request->story;

@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Tag;
 use App\Models\Note;
+use App\Helpers\ImageHelper;
 
 class SearchController extends Controller
 {
@@ -111,11 +112,27 @@ class SearchController extends Controller
     {
         $user_id = Auth::id();
         $note_id = $request->note_id;
-
         $note = Note::find($note_id);
+
         if ($request->file('image')) {
-            $image_path = $request->file('image')->store('public/images');
-            $note->image = $image_path;
+            // 画像を保存
+            $path = $request->file('image')->store('public/images');
+
+            // 保存された画像のフルパスを取得
+            $fullPath = storage_path('app/' . $path);
+
+            // 幅のみ指定してリサイズ（高さはアスペクト比を維持して計算）
+            ImageHelper::resizeImage($fullPath, $path,
+                800, // 幅
+                null, // 高さ
+                function ($constraint) {
+                    // 縦横比を保持したままにする
+                    $constraint->aspectRatio();
+                    // 小さい画像は大きくしない
+                    $constraint->upsize();
+                }
+            );
+            $note->image = $path;
         }
         $note->title = $request->title;
         $note->story = $request->story;

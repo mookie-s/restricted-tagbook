@@ -24,7 +24,7 @@
         <form action="/update-searched-note" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="note_id" value="{{ $note->id }}">
-            <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .svg" onchange="previewFile(this);">
+            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="previewFile(this);">
             <img class="note-image" id="preview" @if($note->image) src="{{ Storage::url($note->image) }}" alt="{{ old('title', $note->title) }}" @endif ></img>
 
             @if($errors->any())

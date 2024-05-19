@@ -18,7 +18,7 @@
         <h2>中断ノートの再開</h2>
         <form action="/broken-note" method="post" enctype="multipart/form-data">
             @csrf
-            画像：<input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" onchange="previewFile(this);">
+            画像：<input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="previewFile(this);">
             <img class="note-image" id="preview" @if($broken_note->image) src="{{ Storage::url($broken_note->image) }}" alt="{{ old('title', $broken_note->title) }}" @endif />
 
             @if($errors->any())

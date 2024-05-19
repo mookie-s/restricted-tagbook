@@ -32,8 +32,8 @@
         @else
         <form action="/note" method="post" enctype="multipart/form-data">
             @csrf
-            画像：<input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .pdf" onchange="previewFile(this);">
-            <img class="note-image" id="preview" src="{{ old('image') }}" alt="{{ old('title') }}" />
+            画像：<input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="previewFile(this);">
+            <img class="note-image" id="preview" src="{{ Storage::url(old('image')) }}" alt="{{ old('title') }}" />
 
             @if($errors->any())
                 <div></div>
