@@ -78,7 +78,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h4 class="modal-title" id="myModalLabel">削除確認画面</h4> -->
-                    <div class="modal-title" id="myModalLabel">{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }} 🔖{{ $note->tag->tagname }}</div>
+                    <div class="modal-title" id="myModalLabel">🔖{{ $note->tag->tagname }}</div>
                 </div>
                 <div class="modal-body">
                     @if($note->image)
@@ -87,8 +87,13 @@
                     <!-- <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image"> -->
                     @endif
                 </div>
+                <div class="modal-note-data">📝{{ $note->created_at->isoFormat('YYYY/MM/DD(ddd)') }}
+                    @if($note->created_at != $note->updated_at)
+                        🔄️{{ $note->updated_at->isoFormat('YYYY/MM/DD(ddd)') }}
+                    @endif
+                </div>
                 <div class="modal-detail">
-                    <h3 class="modal-title" id="myModalLabel">📝 {{ $note->title }}</h3>
+                    <h3 class="modal-title" id="myModalLabel">「 {{ $note->title }} 」</h3>
                     <p>{{ $note->story }}</p>
                 </div>
                 <div class="modal-footer">
