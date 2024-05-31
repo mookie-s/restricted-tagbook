@@ -19,6 +19,7 @@
         <form action="/broken-note" method="post" enctype="multipart/form-data">
             @csrf
             画像：<input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/gif" onchange="previewFile(this);">
+            <!-- imageのパス指定方法が本番・検証環境と異なるので注意 -->
             <img class="note-image" id="preview" @if($broken_note->image) src="{{ Storage::url($broken_note->image) }}" alt="{{ old('title', $broken_note->title) }}" @endif />
 
             @if($errors->any())

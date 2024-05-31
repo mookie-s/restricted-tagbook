@@ -86,14 +86,16 @@ class NoteController extends Controller
         }
 
         if ($request->file('image')) {
-            // 画像を保存
+            // 画像を保存 
+            // ※パスの指定方法が本番・検証環境と異なるので注意
             $path = $request->file('image')->store('public/images');
 
-            // 保存された画像のフルパスを取得
-            $fullPath = storage_path('app/' . $path);
+            // 保存された画像の相対パスを取得
+            // ※パスの指定方法が本番・検証環境と異なるので注意
+            $relativePath = str_replace('public/', 'storage/', $path);
 
             // 幅のみ指定してリサイズ（高さはアスペクト比を維持して計算）
-            ImageHelper::resizeImage($fullPath, $path,
+            ImageHelper::resizeImage($relativePath, $path,
                 800, // 幅
                 null, // 高さ
                 function ($constraint) {

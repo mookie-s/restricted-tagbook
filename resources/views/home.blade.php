@@ -51,6 +51,7 @@
         <div class="note-list">
             <div class="note-list-image">
                 @if($note->image)
+                <!-- imageのパス指定方法が本番・検証環境と異なるので注意 -->
                 <img src="{{ Storage::url($note->image) }}" alt="{{ $note->title }}">
                 @else
                 <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image">
@@ -82,6 +83,7 @@
                 </div>
                 <div class="modal-body">
                     @if($note->image)
+                    <!-- imageのパス指定方法が本番・検証環境と異なるので注意 -->
                     <img src="{{ Storage::url($note->image) }}" alt="{{ $note->title }}">
                     @else
                     <!-- <img src="{{ asset('/images/note-image-tag5.png') }}" alt="no-image"> -->
