@@ -75,11 +75,11 @@
         });
         fileData.readAsDataURL(img.files[0]);
     }
-    // textareaの文字数をカウント（改行コード：LF、CR、CRLFをすべて2文字としてカウント）
+    // textareaの文字数をカウント（改行コード：LF、CR、CRLFを0文字としてカウント）
     function countGrapheme( str ) {
-        const str_step1 = str.replace(/\n/g, 'ああ');
-        const str_step2 = str_step1.replace(/\r/g, 'いい');
-        const str_all = str_step2.replace(/\r\n/g, 'うう');
+        const str_step1 = str.replace(/\n/g, '');
+        const str_step2 = str_step1.replace(/\r/g, '');
+        const str_all = str_step2.replace(/\r\n/g, '');
         const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
         return [...segmenter.segment(str_all)].length;
     }
