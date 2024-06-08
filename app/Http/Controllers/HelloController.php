@@ -9,6 +9,6 @@ class HelloController extends Controller
 {
     public function index(): View
     {
-        return view('/hello');
+        return view('/index');
     }
 }
